@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#DC2626" rx="96"/>
+  <rect x="32" y="32" width="448" height="448" fill="white" rx="72"/>
+  <circle cx="256" cy="220" r="130" fill="#DC2626"/>
+  <text x="256" y="410" font-size="90" font-family="system-ui,sans-serif" text-anchor="middle" fill="#DC2626" font-weight="900">JAPÃO</text>
+  <text x="256" y="490" font-size="56" font-family="system-ui,sans-serif" text-anchor="middle" fill="#9CA3AF">2026</text>
+</svg>

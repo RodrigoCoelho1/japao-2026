@@ -1,0 +1,9 @@
+Japão
+node_modules
+dev-dist
+*.bat
+*.md
+*.pdf
+*.html
+!index.html
+test*.js
