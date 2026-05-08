@@ -65,9 +65,8 @@ export default function Sidebar({ screen, navigate }) {
       {/* Footer */}
       <div className="px-4 py-3 border-t border-gray-100 dark:border-slate-700">
         <div className="text-[12px] text-gray-400 dark:text-slate-500 leading-relaxed">
-          27 jun – 16 jul 2026<br />
-          Tóquio · Hakone · Kyoto<br />
-          Osaka
+          27 jun – 15 jul 2026<br />
+          Tóquio · Kyoto · Osaka
         </div>
       </div>
     </aside>

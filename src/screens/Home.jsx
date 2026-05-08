@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import useStore from '../store/useStore'
-import { ITINERARY, SHOPPING_ITEMS } from '../data'
+import { ITINERARY, SHOPPING_ITEMS, PRIORITY_RESERVATIONS } from '../data'
 
 const DarkToggle = () => {
   const { darkMode, toggleDarkMode } = useStore()
@@ -177,6 +177,9 @@ export default function Home({ navigate }) {
           </div>
         )}
 
+        {/* Alertas de pendentes */}
+        <AlertsPanel navigate={navigate} />
+
         {/* Quick access */}
         <div>
           <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">Acesso rápido</h2>
@@ -263,6 +266,54 @@ function QuickCard({ emoji, title, sub, onClick, color }) {
       <div className="font-semibold text-sm text-gray-900 dark:text-slate-100">{title}</div>
       <div className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">{sub}</div>
     </button>
+  )
+}
+
+const URGENCY_CONFIG = {
+  urgente: { bg: 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800', dot: 'bg-red-500', label: '🔴 URGENTE', text: 'text-red-700 dark:text-red-300' },
+  breve: { bg: 'bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800', dot: 'bg-amber-500', label: '🟡 Antes da viagem', text: 'text-amber-700 dark:text-amber-300' },
+  embarque: { bg: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800', dot: 'bg-blue-500', label: '🔵 Antes de embarcar', text: 'text-blue-700 dark:text-blue-300' },
+}
+
+function AlertsPanel({ navigate }) {
+  const pendentes = PRIORITY_RESERVATIONS.filter(r => r.status === 'pendente')
+  if (pendentes.length === 0) return null
+
+  const urgentes = pendentes.filter(r => r.urgency === 'urgente')
+  const breves = pendentes.filter(r => r.urgency === 'breve')
+  const embarque = pendentes.filter(r => r.urgency === 'embarque')
+
+  const groups = [
+    { key: 'urgente', items: urgentes },
+    { key: 'breve', items: breves },
+    { key: 'embarque', items: embarque },
+  ].filter(g => g.items.length > 0)
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wide">⚠️ Pendentes</h2>
+        <button onClick={() => navigate('checklist')} className="text-xs text-blue-600 dark:text-blue-400 font-medium">ver tudo →</button>
+      </div>
+      <div className="space-y-2">
+        {groups.map(({ key, items }) => {
+          const cfg = URGENCY_CONFIG[key]
+          return (
+            <div key={key} className={`${cfg.bg} border rounded-2xl p-3`}>
+              <div className={`text-[11px] font-bold uppercase tracking-wide mb-2 ${cfg.text}`}>{cfg.label}</div>
+              <div className="space-y-1.5">
+                {items.map(item => (
+                  <div key={item.id} className="flex items-start gap-2">
+                    <div className={`w-1.5 h-1.5 rounded-full ${cfg.dot} mt-1.5 flex-shrink-0`} />
+                    <span className="text-xs text-gray-800 dark:text-slate-200 leading-snug">{item.what}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
