@@ -24,7 +24,17 @@ const useStore = create(
 
       // Financial
       exchangeRate: 0.033,
-      setExchangeRate: (rate) => set({ exchangeRate: parseFloat(rate) }),
+      setExchangeRate: (rate) => set({ exchangeRate: parseFloat(rate), exchangeRateManualOverride: true }),
+      exchangeRateUpdatedAt: null,
+      exchangeRateSource: 'default',
+      exchangeRateManualOverride: false,
+      setExchangeRateAuto: (rate, source = 'open.er-api.com') =>
+        set({
+          exchangeRate: parseFloat(rate),
+          exchangeRateUpdatedAt: new Date().toISOString(),
+          exchangeRateSource: source,
+          exchangeRateManualOverride: false,
+        }),
       budgets: defaultBudgets,
       setBudget: (cat, val) => set(s => ({ budgets: { ...s.budgets, [cat]: val } })),
       expenses: [],
@@ -96,6 +106,12 @@ const useStore = create(
     }),
     {
       name: 'japao-2026',
+      version: 1,
+      migrate: (persistedState, version) => {
+        // Estrutura de migração — vazia por enquanto.
+        // Quando incrementar a versão, tratar transformações de schema aqui.
+        return persistedState
+      },
       partialize: (state) => {
         const { birthdayUnlocked, birthdayAttempts, ...rest } = state
         return rest

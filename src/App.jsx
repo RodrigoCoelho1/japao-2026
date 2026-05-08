@@ -50,10 +50,28 @@ export default function App() {
   const [screen, setScreen] = useState('home')
   const [history, setHistory] = useState([])
   const darkMode = useStore(s => s.darkMode)
+  const setExchangeRateAuto = useStore(s => s.setExchangeRateAuto)
+  const exchangeRateManualOverride = useStore(s => s.exchangeRateManualOverride)
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode)
   }, [darkMode])
+
+  // Câmbio JPY→BRL automático ao montar o app.
+  // Fallback: se fetch falhar, mantém valor persistido. Override manual prevalece.
+  useEffect(() => {
+    if (exchangeRateManualOverride) return
+    fetch('https://open.er-api.com/v6/latest/JPY')
+      .then(r => r.json())
+      .then(d => {
+        const brl = d?.rates?.BRL
+        if (brl && brl > 0) setExchangeRateAuto(brl, 'open.er-api.com')
+      })
+      .catch(() => {
+        // silencioso — usa valor persistido
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const navigate = (to) => {
     setHistory(h => [...h, screen])

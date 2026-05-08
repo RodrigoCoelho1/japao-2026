@@ -3,7 +3,31 @@ import useStore from '../store/useStore'
 import { BUDGET_CATEGORIES } from '../data'
 
 export default function Financeiro() {
-  const { exchangeRate, setExchangeRate, expenses, addExpense, removeExpense, budgets, setBudget } = useStore()
+  const { exchangeRate, setExchangeRate, expenses, addExpense, removeExpense, budgets, setBudget,
+          exchangeRateUpdatedAt, exchangeRateSource, exchangeRateManualOverride, setExchangeRateAuto } = useStore()
+  const [refreshing, setRefreshing] = useState(false)
+  const [refreshErr, setRefreshErr] = useState('')
+
+  const refreshRate = async () => {
+    setRefreshing(true)
+    setRefreshErr('')
+    try {
+      const r = await fetch('https://open.er-api.com/v6/latest/JPY')
+      const d = await r.json()
+      const brl = d?.rates?.BRL
+      if (brl && brl > 0) setExchangeRateAuto(brl, 'open.er-api.com')
+      else setRefreshErr('Resposta inválida')
+    } catch (e) {
+      setRefreshErr('Falha ao buscar cotação')
+    } finally {
+      setRefreshing(false)
+    }
+  }
+
+  const formatUpdatedAt = (iso) => {
+    if (!iso) return 'nunca'
+    try { return new Date(iso).toLocaleString('pt-BR') } catch { return iso }
+  }
   const [tab, setTab] = useState('conversor')
   const [yenInput, setYenInput] = useState('')
   const [brlInput, setBrlInput] = useState('')
@@ -59,7 +83,20 @@ export default function Financeiro() {
         {tab === 'conversor' && (
           <>
             <div className="card p-4">
-              <div className="text-sm font-bold text-gray-700 mb-3">Conversor de Câmbio</div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-sm font-bold text-gray-700">Conversor de Câmbio</div>
+                <button
+                  onClick={refreshRate}
+                  disabled={refreshing}
+                  className="text-xs px-3 py-1.5 rounded-full bg-red-50 text-red-700 font-semibold hover:bg-red-100 disabled:opacity-50"
+                >
+                  {refreshing ? 'Atualizando…' : '🔄 Atualizar agora'}
+                </button>
+              </div>
+              <div className="text-[11px] text-gray-500 mb-3">
+                ¥1 = R$ {rate.toFixed(4)} · fonte: {exchangeRateManualOverride ? 'manual' : exchangeRateSource} · atualizado: {formatUpdatedAt(exchangeRateUpdatedAt)}
+                {refreshErr && <span className="text-red-600 ml-2">⚠ {refreshErr}</span>}
+              </div>
               <div className="space-y-3">
                 <div>
                   <label className="text-xs text-gray-500 mb-1 block">Valor em ¥ (Iene)</label>
