@@ -1,7 +1,55 @@
+import { useRef } from 'react'
 import useStore from '../store/useStore'
 
 export default function Menu({ navigate }) {
   const { darkMode, toggleDarkMode } = useStore()
+  const fileInputRef = useRef(null)
+
+  const handleExport = () => {
+    try {
+      const raw = localStorage.getItem('japao-2026')
+      const payload = {
+        app: 'japao-2026',
+        exportedAt: new Date().toISOString(),
+        data: raw ? JSON.parse(raw) : null,
+      }
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')
+      a.href = url
+      a.download = `japao-2026-backup-${stamp}.json`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      alert('Erro ao exportar: ' + e.message)
+    }
+  }
+
+  const handleImportClick = () => fileInputRef.current?.click()
+
+  const handleImportFile = async (e) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    try {
+      const text = await file.text()
+      const parsed = JSON.parse(text)
+      const data = parsed?.data ?? parsed
+      if (!data || typeof data !== 'object') throw new Error('Formato inválido')
+      const ok = window.confirm('Importar dados vai SUBSTITUIR todos os dados atuais do app. Continuar?')
+      if (!ok) return
+      localStorage.setItem('japao-2026', JSON.stringify(data))
+      alert('Dados importados! O app será recarregado.')
+      window.location.reload()
+    } catch (err) {
+      alert('Falha ao importar: ' + err.message)
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = ''
+    }
+  }
+
   const items = [
     { id: 'clima', emoji: '🌦️', title: 'Clima no Japão', sub: 'Previsão 7 dias · cidades do roteiro', color: 'bg-sky-50 dark:bg-sky-950 border-sky-100 dark:border-sky-800' },
     { id: 'comidas', emoji: '🍜', title: 'Guia de Comidas', sub: 'O que comer · combini · WiFi & Apps', color: 'bg-orange-50 dark:bg-orange-950 border-orange-100 dark:border-orange-800' },
@@ -60,6 +108,35 @@ export default function Menu({ navigate }) {
         </div>
 
         <div className="md:max-w-5xl md:mx-auto space-y-2 mt-4">
+
+        <div className="card p-4 mt-4">
+          <div className="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">Backup dos dados</div>
+          <div className="text-xs text-gray-500 dark:text-slate-400 mb-3">
+            Exporte um JSON com todo o estado do app (compras, gastos, memórias, checklists). Importe para restaurar.
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={handleExport}
+              className="flex-1 bg-blue-600 text-white text-xs font-semibold py-2.5 rounded-xl active:scale-95 transition-transform"
+            >
+              ⬇️ Exportar dados
+            </button>
+            <button
+              onClick={handleImportClick}
+              className="flex-1 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-100 text-xs font-semibold py-2.5 rounded-xl active:scale-95 transition-transform"
+            >
+              ⬆️ Importar dados
+            </button>
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="application/json,.json"
+            className="hidden"
+            onChange={handleImportFile}
+          />
+        </div>
+
         <div className="card p-4 mt-4">
           <div className="text-xs font-bold text-gray-500 dark:text-slate-400 uppercase tracking-wide mb-3">Sobre o app</div>
           <div className="space-y-1.5">
