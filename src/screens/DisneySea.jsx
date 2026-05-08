@@ -1,4 +1,5 @@
 import useStore from '../store/useStore'
+import MapsLink from '../components/MapsLink'
 
 const PORTS = [
   {
@@ -113,10 +114,11 @@ export default function DisneySea({ goBack }) {
       <div className="screen-header">
         <div className="flex items-center gap-2">
           <button onClick={goBack} className={`text-xl ${darkMode ? 'text-slate-400' : 'text-gray-400'}`}>‹</button>
-          <div>
+          <div className="flex-1 min-w-0">
             <h1 className={`text-lg font-bold ${text}`}>🌊 Tokyo DisneySea</h1>
             <p className={`text-xs ${sub}`}>Urayasu, Chiba · O parque mais bonito da Disney no mundo</p>
           </div>
+          <MapsLink name="Tokyo DisneySea" lat={35.6267} lng={139.8851} address="Urayasu, Chiba, Japan" />
         </div>
       </div>
 
