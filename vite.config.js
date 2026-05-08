@@ -9,7 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg'],
       manifest: {
-        name: 'Japão 2026 — Guia de Viagem',
+        name: 'Japão 2026 — Guia de Viagem v2',
         short_name: 'Japão 2026',
         description: 'Guia de viagem da família Coelho ao Japão — jun/jul 2026',
         theme_color: '#DC2626',
