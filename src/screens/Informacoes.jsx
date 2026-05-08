@@ -142,7 +142,7 @@ export default function Informacoes() {
           <>
             <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4">
               <div className="font-bold text-blue-800 mb-1">🚄 Dicas de Transporte — roteiro revisado</div>
-              <div className="text-xs text-blue-700">Shinkansen, Takkyubin, Hakone Free Pass e o trecho final Tóquio → Narita.</div>
+              <div className="text-xs text-blue-700">Shinkansen, conexão GRU T2→T3, Suica e o trecho final Tóquio → Narita.</div>
             </div>
             {TRANSPORT_TIPS.map((tip, i) => (
               <div key={i} className="card p-4">

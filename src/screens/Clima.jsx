@@ -4,7 +4,9 @@ import { ITINERARY } from '../data'
 const CITY_COORDS = {
   'Tóquio': { lat: 35.6762, lon: 139.6503 },
   'Tokyo': { lat: 35.6762, lon: 139.6503 },
-  'Hakone': { lat: 35.2323, lon: 139.1069 },
+  'Nara': { lat: 34.6851, lon: 135.8048 },
+  'Hiroshima': { lat: 34.3853, lon: 132.4553 },
+  'Kamakura': { lat: 35.3197, lon: 139.5467 },
   'Kyoto': { lat: 35.0116, lon: 135.7681 },
   'Osaka': { lat: 34.6937, lon: 135.5023 },
 }

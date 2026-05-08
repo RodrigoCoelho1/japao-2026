@@ -518,7 +518,7 @@ export const METRO_LINES = [
   { name: 'JR Yamanote Line', color: '#9ACD32', desc: 'Loop circular · conecta todas as áreas principais de Tóquio · Shinjuku, Shibuya, Ueno, Akihabara' },
   { name: 'JR Sobu Line', color: '#FFD700', desc: 'Linha amarela · Shinjuku → Akihabara em ~20 min' },
   { name: 'Tokyo Metro Ginza', color: '#F97316', desc: 'Linha laranja · Centro de Tóquio · Shibuya ↔ Ueno' },
-  { name: 'Odakyu Line', color: '#1D4ED8', desc: 'Shinjuku → Hakone-Yumoto · alternativa ao Shinkansen · não cobre JR Pass' },
+  { name: 'Odakyu Line', color: '#1D4ED8', desc: 'Shinjuku → Odawara · linha privada · não cobre JR Pass' },
   { name: 'Narita Express (N\'EX)', color: '#DC2626', desc: 'Narita → Shinjuku em ~80 min · ~¥3.000 · coberto por JR Pass' },
 ]
 

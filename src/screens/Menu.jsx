@@ -73,7 +73,7 @@ export default function Menu({ navigate }) {
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-gray-500 dark:text-slate-400">Destinos</span>
-              <span className="font-medium text-gray-700 dark:text-slate-300">Tóquio · Hakone · Kyoto · Osaka</span>
+              <span className="font-medium text-gray-700 dark:text-slate-300">Tóquio · Kyoto · Osaka · Nara · Hiroshima</span>
             </div>
             <div className="flex justify-between text-xs">
               <span className="text-gray-500 dark:text-slate-400">Dados offline</span>
