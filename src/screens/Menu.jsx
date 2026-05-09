@@ -62,6 +62,7 @@ export default function Menu({ navigate }) {
     { id: 'informacoes', emoji: '🌐', title: 'Informações Úteis', sub: 'Tax-free · Frases · Emergência · Metrô', color: 'bg-teal-50 dark:bg-teal-950 border-teal-100 dark:border-teal-800' },
     { id: 'checklist', emoji: '✅', title: 'Checklist de Preparação', sub: 'Tarefas pré-viagem por prazo', color: 'bg-lime-50 dark:bg-lime-950 border-lime-100 dark:border-lime-800' },
     { id: 'videos', emoji: '🎬', title: 'Vídeos e Dicas', sub: 'YouTube · guias de viagem · canais BR e EN', color: 'bg-indigo-50 dark:bg-indigo-950 border-indigo-100 dark:border-indigo-800' },
+    { id: 'frases', emoji: '🗣️', title: 'Frases em Japonês', sub: '30 frases de sobrevivência · TTS 🔊', color: 'bg-fuchsia-50 dark:bg-fuchsia-950 border-fuchsia-100 dark:border-fuchsia-800' },
     { id: 'disneyland', emoji: '🏰', title: 'Tokyo Disneyland', sub: 'Atrações exclusivas · Beauty & Beast · Pooh', color: 'bg-pink-50 dark:bg-pink-950 border-pink-100 dark:border-pink-800' },
     { id: 'disneysea', emoji: '🌊', title: 'Tokyo DisneySea', sub: 'O parque mais bonito do mundo · Fantasy Springs', color: 'bg-cyan-50 dark:bg-cyan-950 border-cyan-100 dark:border-cyan-800' },
     { id: 'usj', emoji: '🎢', title: 'Universal Studios Japan', sub: 'Osaka · 12/07 · Nintendo World · Harry Potter · Flying Dinosaur', color: 'bg-purple-50 dark:bg-purple-950 border-purple-100 dark:border-purple-800' },
