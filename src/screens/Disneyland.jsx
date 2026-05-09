@@ -1,4 +1,5 @@
 import useStore from '../store/useStore'
+import MapsLink from '../components/MapsLink'
 
 const LANDS = [
   {
@@ -104,10 +105,11 @@ export default function Disneyland({ goBack }) {
       <div className="screen-header">
         <div className="flex items-center gap-2">
           <button onClick={goBack} className={`text-xl ${darkMode ? 'text-slate-400' : 'text-gray-400'}`}>‹</button>
-          <div>
+          <div className="flex-1 min-w-0">
             <h1 className={`text-lg font-bold ${text}`}>🏰 Tokyo Disneyland</h1>
             <p className={`text-xs ${sub}`}>Urayasu, Chiba · Atrações exclusivas japonesas imperdíveis</p>
           </div>
+          <MapsLink name="Tokyo Disneyland" lat={35.6329} lng={139.8804} address="Urayasu, Chiba, Japan" />
         </div>
       </div>
 
