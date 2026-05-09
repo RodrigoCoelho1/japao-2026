@@ -452,6 +452,12 @@ export const PRIORITY_RESERVATIONS = [
   { id: 'seguro', what: '🔵 Seguro viagem — 4 pessoas · 27/06–16/07 · cobertura mínima USD 30.000', date: '27/06', urgency: 'embarque', status: 'pendente' },
   // 💡 Backlog (a investigar depois)
   { id: 'starwars-shibuya', what: '💡 Visita Star Wars Galaxy Store + Pop-up — Shibuya · pesquisar endereço, horários e datas do pop-up · encaixar em 30/06 (dia Shibuya)', date: '30/06', urgency: 'backlog', status: 'pendente' },
+  // Mudanças Hiroshi-san (análise 2026-05-09) — avaliar e decidir
+  { id: 'hiroshi-1-ep-usj', what: '💡 [Hiroshi] EP USJ na janela 12/05 02h BRT — alarme firme; EP esgota em 24-72h pra domingo de julho', date: '12/05', urgency: 'backlog', status: 'pendente' },
+  { id: 'hiroshi-2-akihabara', what: '💡 [Hiroshi] Aliviar 04/07 — mover Akihabara pro 02/07 à tarde (depois Odaiba). 04/07 vira só Tsukiji+Ginza+Asakusa', date: '04/07', urgency: 'backlog', status: 'pendente' },
+  { id: 'hiroshi-3-suetomo', what: '💡 [Hiroshi] Confirmar Gion Suetomo + Hiyoshi-Do esta semana — Obon-eve fecha 2-3 semanas antes', date: '09/07', urgency: 'backlog', status: 'pendente' },
+  { id: 'hiroshi-4-vjw', what: '💡 [Hiroshi] Visit Japan Web — registrar 14 dias antes do voo (até 13/06) — fila imigração Narita', date: '13/06', urgency: 'backlog', status: 'pendente' },
+  { id: 'hiroshi-5-shinkansen', what: '💡 [Hiroshi] Corrigir lado dos assentos Shinkansen Tokyo→Kyoto: roteiro fala A/B mas Fuji fica à DIREITA = D ou E', date: '05/07', urgency: 'backlog', status: 'pendente' },
 ]
 
 export const BUDGET_CATEGORIES = [
