@@ -450,6 +450,8 @@ export const PRIORITY_RESERVATIONS = [
   // 🔵 Antes de embarcar
   { id: 'esim', what: '🔵 eSIM Airalo — ativar antes de embarcar (4 pessoas)', date: '27/06', urgency: 'embarque', status: 'pendente' },
   { id: 'seguro', what: '🔵 Seguro viagem — 4 pessoas · 27/06–16/07 · cobertura mínima USD 30.000', date: '27/06', urgency: 'embarque', status: 'pendente' },
+  // 💡 Backlog (a investigar depois)
+  { id: 'starwars-shibuya', what: '💡 Visita Star Wars Galaxy Store + Pop-up — Shibuya · pesquisar endereço, horários e datas do pop-up · encaixar em 30/06 (dia Shibuya)', date: '30/06', urgency: 'backlog', status: 'pendente' },
 ]
 
 export const BUDGET_CATEGORIES = [
