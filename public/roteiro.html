@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🇯🇵 Roteiro Japão 2026 — Workspace</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { font-family: system-ui, -apple-system, "Noto Sans JP", sans-serif; }
+  body { background: #F9FAFB; }
+  .city-tokyo { border-left-color: #3B82F6; }
+  .city-kyoto { border-left-color: #DC2626; }
+  .city-osaka { border-left-color: #F97316; }
+  .city-hiroshima { border-left-color: #9333EA; }
+  .city-transit { border-left-color: #6B7280; }
+  .day-card { border-left-width: 6px; }
+  .day-free { background: #ECFDF5; }
+  .day-birthday { background: #FDF2F8; }
+  .day-intense { background: #FEFCE8; }
+  .wish-item { transition: all 0.18s ease; }
+  .wish-item:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .migrated-badge { animation: fadein 0.4s ease; }
+  @keyframes fadein { from {opacity:0; transform:translateY(-4px);} to {opacity:1; transform:none;} }
+  .activity .return-btn { opacity: 0; transition: opacity 0.15s; }
+  .activity:hover .return-btn { opacity: 1; }
+  .confirmed { background: linear-gradient(to right, #ECFDF5 0%, transparent 30%); border-left: 3px solid #10B981; padding-left: 6px; margin-left: -9px; border-radius: 3px; }
+  .chip-confirmed { display: inline-flex; align-items: center; gap: 2px; font-size: 9px; font-weight: 700; background: #10B981; color: white; padding: 1px 6px; border-radius: 9999px; }
+  .chip-flight { background: #1E40AF; color: white; font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 9999px; }
+  .chip-hotel { background: #7C3AED; color: white; font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 9999px; }
+  .chip-park { background: #DB2777; color: white; font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 9999px; }
+  [contenteditable=true]:focus { outline: 2px solid #3B82F6; background: #EFF6FF; border-radius: 4px; padding: 2px 4px; }
+  @media print {
+    .no-print, #wishlist-col, header button { display: none !important; }
+    .day-card { break-inside: avoid; page-break-inside: avoid; box-shadow: none !important; }
+    #roteiro-col { width: 100% !important; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body class="text-slate-800">
+
+<header class="bg-white border-b shadow-sm sticky top-0 z-20">
+  <div class="max-w-screen-2xl mx-auto px-4 py-3 flex flex-wrap items-center gap-3">
+    <div class="flex-1 min-w-0">
+      <h1 class="text-lg sm:text-xl font-bold">🇯🇵 Roteiro Japão 2026 — Workspace de Construção</h1>
+      <p class="text-xs text-slate-500">Versão Elaine v2 · 27/06 → 16/07 · Família Coelho (Rodrigo, Elaine, Pedro 12a, Felipe 9a)</p>
+    </div>
+    <div class="flex flex-wrap gap-2 no-print">
+      <button id="btn-export" class="px-3 py-1.5 text-xs font-semibold bg-blue-600 text-white rounded-lg hover:bg-blue-700">⬇ Exportar JSON</button>
+      <label class="px-3 py-1.5 text-xs font-semibold bg-slate-200 rounded-lg hover:bg-slate-300 cursor-pointer">
+        ⬆ Importar JSON
+        <input type="file" id="file-import" accept=".json" class="hidden">
+      </label>
+      <button id="btn-print" class="px-3 py-1.5 text-xs font-semibold bg-slate-200 rounded-lg hover:bg-slate-300">🖨 Imprimir</button>
+      <button id="btn-reset" class="px-3 py-1.5 text-xs font-semibold bg-red-100 text-red-700 rounded-lg hover:bg-red-200">↻ Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-screen-2xl mx-auto px-2 sm:px-4 py-4 grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-4">
+  <!-- Coluna esquerda: ROTEIRO BASE -->
+  <section id="roteiro-col">
+    <!-- Card de Status Pré-Viagem -->
+    <article class="bg-gradient-to-br from-emerald-50 to-blue-50 border-2 border-emerald-200 rounded-xl p-4 mb-4 shadow-sm">
+      <h3 class="font-bold text-base mb-3 flex items-center gap-2">📋 Status Pré-Viagem <span class="text-xs font-normal text-slate-600">— itens já confirmados/comprados</span></h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div>
+          <div class="font-bold text-blue-800 mb-1.5">✈️ VOOS — Qatar Airways + LATAM</div>
+          <ul class="space-y-1 text-slate-700">
+            <li>✅ <b>LA3528</b> · 27/06 · BSB→GRU · 15h00</li>
+            <li>✅ <b>QR780</b> · 27/06 · GRU→DOH · 20h30 (B777-300ER)</li>
+            <li>✅ <b>QR808</b> · 28/06 · DOH→NRT · pouso 12h55 (29/06)</li>
+            <li>✅ <b>QR809</b> · 15/07 · NRT→DOH · 17h25 (B777-300ER)</li>
+            <li>✅ <b>QR779</b> · 16/07 · DOH→GRU · pouso 10h35 (A350-1000)</li>
+            <li>✅ <b>LA3263</b> · 17/07 · GRU→BSB · 09h40 → 11h25</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-bold text-violet-800 mb-1.5">🏨 HOTÉIS — 16 noites confirmadas</div>
+          <ul class="space-y-1 text-slate-700">
+            <li>✅ Sunroute Plaza Shinjuku · 29/06–05/07 · 6 noites · R$ 9.571</li>
+            <li>✅ Good Nature Hotel Kyoto · 05/07–11/07 · 6 noites · R$ 10.455</li>
+            <li>✅ Mercure Tokyu Stay Osaka Namba · 11/07–14/07 · 3 noites · R$ 5.503</li>
+            <li>✅ Metropolitan Tokyo Marunouchi · 14/07–15/07 · 1 noite · R$ 2.247</li>
+            <li class="text-slate-500 pt-1 border-t border-slate-200">Total: R$ 27.777 (atualizado pela Elaine 2026-05-10)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-bold text-pink-800 mb-1.5">🎢 INGRESSOS — comprados</div>
+          <ul class="space-y-1 text-slate-700">
+            <li>✅ Tokyo Disneyland · 01/07 · Reserva A00567974011 · ¥27.100</li>
+            <li>✅ TeamLab Planets · 02/07 08h30 · #f404769f41c50dcd56 · ¥11.800</li>
+            <li>✅ Tokyo DisneySea · 03/07 · ¥27.100</li>
+            <li>✅ Maikoya Gion · 09/07 15h · #2932897 · ¥30.800 (chá + kimono)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="font-bold text-orange-800 mb-1.5">⏳ PENDENTES — comprar/confirmar</div>
+          <ul class="space-y-1 text-slate-700">
+            <li>🔴 <b>USJ + Express Pass PREMIUM</b> · 13/07 · janela 13/05 02h BRT</li>
+            <li>🔴 <b>Gion Suetomo</b> jantar kaiseki aniversário · 09/07 19h · esta semana</li>
+            <li>🔴 <b>Massagem Hiyoshi-Do</b> Gion · 09/07 17h · esta semana</li>
+            <li>🟡 JR Pass 21 dias · venda abre 28/05 16h BRT</li>
+            <li>🟡 Shibuya Sky · venda abre ~16/06 · slot 17h30</li>
+            <li>🟡 Visit Japan Web · registrar a partir 13/06</li>
+            <li>🟡 Suica DIGITAL · Apple/Google Wallet antes voo</li>
+            <li>🟡 Samurai & Ninja Museum Kyoto · 09/07 10h30</li>
+            <li>🟡 eSIM Airalo · 4 pessoas · antes voo</li>
+            <li>🟡 Seguro viagem · 4 pax · 27/06–17/07</li>
+            <li>🟡 Hotel GRU · noite 16/07</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <div class="flex items-center justify-between mb-3 px-2">
+      <h2 class="text-sm font-bold text-slate-700">📅 ROTEIRO DIA A DIA — 21 dias</h2>
+      <span class="text-xs text-slate-500" id="roteiro-stats"></span>
+    </div>
+    <div id="dias" class="space-y-3"></div>
+  </section>
+
+  <!-- Coluna direita: WISHLIST -->
+  <aside id="wishlist-col" class="bg-slate-100 rounded-xl p-3 lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-sm font-bold text-slate-700">💭 ITENS DE DESEJO</h2>
+      <span class="text-xs text-slate-500" id="wishlist-stats"></span>
+    </div>
+    <div class="flex gap-2 mb-2 flex-wrap no-print">
+      <select id="filter-cat" class="text-xs px-2 py-1 rounded border bg-white flex-1 min-w-[120px]">
+        <option value="all">Todas categorias</option>
+        <option value="templo">🏛️ Templos/Pontos</option>
+        <option value="comida">🍜 Gastronomia</option>
+        <option value="compras">🛍️ Compras</option>
+        <option value="cultura">🎨 Cultura/Experiência</option>
+        <option value="familia">🏖️ Família/Conforto</option>
+        <option value="operacional">⚙️ Operacional</option>
+        <option value="fotos">📷 Fotos</option>
+      </select>
+      <button id="btn-add" class="px-3 py-1 text-xs font-semibold bg-emerald-600 text-white rounded hover:bg-emerald-700">+ Adicionar</button>
+    </div>
+    <div class="flex gap-2 mb-3 flex-wrap no-print">
+      <select id="filter-cidade" class="text-xs px-2 py-1 rounded border bg-white flex-1 min-w-[120px]">
+        <option value="all">🗺️ Todas cidades</option>
+        <option value="Tóquio">🗼 Tóquio</option>
+        <option value="Kyoto">⛩️ Kyoto</option>
+        <option value="Osaka">🏯 Osaka</option>
+        <option value="Hiroshima">🕊️ Hiroshima</option>
+        <option value="Nara">🦌 Nara</option>
+        <option value="Kamakura">🌊 Kamakura</option>
+        <option value="Hakone/Fuji">🗻 Hakone/Fuji</option>
+        <option value="Kanazawa">🌿 Kanazawa</option>
+        <option value="Uji">🍵 Uji</option>
+        <option value="Geral">📌 Geral/Múltiplos</option>
+      </select>
+      <select id="filter-fonte" class="text-xs px-2 py-1 rounded border bg-white flex-1 min-w-[120px]">
+        <option value="all">📺 Todos canais</option>
+        <option value="VPD Play">VPD Play</option>
+        <option value="Vai com Bruno">Vai com Bruno</option>
+        <option value="Gaby Coutinho">Gaby Coutinho</option>
+        <option value="Paula Stephânia">Paula Stephânia</option>
+        <option value="Status Viajante">Status Viajante</option>
+        <option value="Djó Takashima">Djó Takashima</option>
+        <option value="Lucas & Kaho Brazuca">Lucas &amp; Kaho</option>
+        <option value="Sonhe Alto Viagens">Sonhe Alto</option>
+        <option value="__sem">Sem indicação</option>
+      </select>
+    </div>
+    <div id="wishlist" class="space-y-2"></div>
+  </aside>
+</main>
+
+<!-- Modal: migrar item -->
+<div id="modal-migrate" class="fixed inset-0 bg-black/50 z-30 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4">
+    <h3 class="font-bold mb-2">Migrar para qual dia?</h3>
+    <p id="modal-item-name" class="text-xs text-slate-500 mb-3"></p>
+    <select id="modal-day-select" class="w-full px-3 py-2 border rounded mb-3 text-sm"></select>
+    <div class="flex gap-2 justify-end">
+      <button id="modal-cancel" class="px-3 py-1.5 text-xs bg-slate-200 rounded">Cancelar</button>
+      <button id="modal-confirm" class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded font-semibold">Migrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: adicionar wishlist -->
+<div id="modal-add" class="fixed inset-0 bg-black/50 z-30 hidden items-center justify-center p-4">
+  <div class="bg-white rounded-xl shadow-xl max-w-sm w-full p-4 space-y-2">
+    <h3 class="font-bold mb-2">Novo item na wishlist</h3>
+    <input id="add-title" placeholder="Nome (ex: Tofuku-ji)" class="w-full px-3 py-2 border rounded text-sm">
+    <input id="add-desc" placeholder="Descrição curta" class="w-full px-3 py-2 border rounded text-sm">
+    <div class="grid grid-cols-2 gap-2">
+      <select id="add-cat" class="px-3 py-2 border rounded text-sm">
+        <option value="templo">🏛️ Templo</option>
+        <option value="comida">🍜 Comida</option>
+        <option value="compras">🛍️ Compras</option>
+        <option value="cultura">🎨 Cultura</option>
+        <option value="familia">🏖️ Família</option>
+        <option value="operacional">⚙️ Operacional</option>
+        <option value="fotos">📷 Fotos</option>
+      </select>
+      <input id="add-time" placeholder="Tempo (ex: 1h30)" class="px-3 py-2 border rounded text-sm">
+    </div>
+    <input id="add-price" placeholder="Preço (ex: ¥600)" class="w-full px-3 py-2 border rounded text-sm">
+    <div class="flex gap-2 justify-end pt-2">
+      <button id="add-cancel" class="px-3 py-1.5 text-xs bg-slate-200 rounded">Cancelar</button>
+      <button id="add-confirm" class="px-3 py-1.5 text-xs bg-emerald-600 text-white rounded font-semibold">Adicionar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="max-w-screen-2xl mx-auto px-4 py-6 text-center text-xs text-slate-500 no-print">
+  <p>Workspace de construção · Versão Elaine v2 (2026-05-11) · Refinos operacionais Kenji-san</p>
+  <p>Após consolidação, este roteiro será incorporado à área oficial do app <a href="https://rc-japao.vercel.app" class="text-blue-600 underline">rc-japao.vercel.app</a></p>
+</footer>
+
+<script>
+// ============ INITIAL STATE ============
+const INITIAL_STATE = {
+  version: 'elaine-v2-2026-05-11-notebooklm',
+  days: [
+    { id:'d1', date:'27/06', dow:'Sáb', city:'SP → Doha', cityClass:'transit', hotel:null, badge:null, activities:[
+      {t:'15h00', d:'✈️ LA3528 BSB → GRU', c:true, tag:'flight'},
+      {t:'20h30', d:'✈️ QR780 GRU → DOH (Boeing 777-300ER)', c:true, tag:'flight'},
+    ]},
+    { id:'d2', date:'28/06', dow:'Dom', city:'Em voo · Doha (conexão)', cityClass:'transit', hotel:null, badge:null, activities:[
+      {t:'~10h00', d:'Pouso Doha · conexão 3h35', c:true, tag:'flight'},
+      {t:'13h35', d:'✈️ QR808 DOH → NRT (Boeing 777-300ER)', c:true, tag:'flight'},
+    ]},
+    { id:'d3', date:'29/06', dow:'Seg', city:'Tóquio · Shinjuku', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:null, activities:[
+      {t:'12h55', d:'Pouso Narita T2', c:true, tag:'flight'},
+      {t:'16h00', d:'Check-in Sunroute Plaza Shinjuku (〒160-0023 東京都新宿区西新宿2-3-1)', c:true, tag:'hotel'},
+    ]},
+    { id:'d4', date:'30/06', dow:'Ter', city:'Tóquio · livre', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:null, activities:[]},
+    { id:'d5', date:'01/07', dow:'Qua', city:'Tóquio · Tokyo Disneyland', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:{text:'PARQUE',color:'bg-pink-200 text-pink-800'}, activities:[
+      {t:'08h30', d:'⭐ Tokyo Disneyland — Reserva A00567974011 · ¥27.100 (2 Adult + 1 Junior + 1 Child)', c:true, tag:'park'},
+    ]},
+    { id:'d6', date:'02/07', dow:'Qui', city:'Tóquio · teamLab + Odaiba', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:null, activities:[
+      {t:'08h30', d:'⭐ TeamLab Planets — Inquiry #f404769f41c50dcd56 · ¥11.800', c:true, tag:'park'},
+    ]},
+    { id:'d7', date:'03/07', dow:'Sex', city:'Tóquio · DisneySea', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:{text:'PARQUE',color:'bg-cyan-200 text-cyan-800'}, activities:[
+      {t:'08h30', d:'⭐ Tokyo DisneySea — ¥27.100 (2 Adult + 1 Junior + 1 Child)', c:true, tag:'park'},
+    ]},
+    { id:'d8', date:'04/07', dow:'Sáb', city:'Tóquio · DIA LIVRE', cityClass:'tokyo', hotel:'Sunroute Plaza Shinjuku', badge:{text:'DIA LIVRE',color:'bg-emerald-200 text-emerald-800'}, free:true, activities:[]},
+    { id:'d9', date:'05/07', dow:'Dom', city:'Tóquio → Kyoto', cityClass:'transit', hotel:'Good Nature Hotel Kyoto', badge:null, activities:[
+      {t:'10h00', d:'🚄 Shinkansen Hikari Tokyo → Kyoto (assentos D ou E · Fuji direita) · 2h15', c:true, tag:'flight'},
+      {t:'12h15', d:'Kyoto Station · Táxi → Good Nature Hotel · Check-in', c:true, tag:'hotel'},
+    ]},
+    { id:'d10', date:'06/07', dow:'Seg', city:'Kyoto → Hiroshima / Miyajima', cityClass:'hiroshima', hotel:'Good Nature Hotel Kyoto', badge:{text:'DIA INTENSO',color:'bg-yellow-200 text-yellow-800'}, intense:true, activities:[
+      {t:'07h20', d:'🚄 Shinkansen Kyoto → Hiroshima (JR Pass · 1h15)'},
+      {t:'17h00', d:'🚄 Shinkansen Hiroshima → Kyoto (JR Pass · 1h20)'},
+    ]},
+    { id:'d11', date:'07/07', dow:'Ter', city:'Kyoto → Nara', cityClass:'kyoto', hotel:'Good Nature Hotel Kyoto', badge:null, activities:[
+      {t:'09h20', d:'🚃 Kyoto → Nara JR Station (JR Pass · 45 min)'},
+      {t:'14h00', d:'🚃 Nara → Kyoto (45 min)'},
+    ]},
+    { id:'d12', date:'08/07', dow:'Qua', city:'Kyoto · Higashiyama', cityClass:'kyoto', hotel:'Good Nature Hotel Kyoto', badge:null, activities:[]},
+    { id:'d13', date:'09/07', dow:'Qui', city:'🎂 Aniversário Elaine — Kyoto', cityClass:'kyoto', hotel:'Good Nature Hotel Kyoto', badge:{text:'ANIVERSÁRIO 🎂',color:'bg-pink-300 text-pink-900'}, birthday:true, activities:[
+      {t:'15h00', d:'🎎 Maikoya Gion — kimono + cerimônia chá · RESERVA #2932897 · ¥30.800 · 1h30', c:true, tag:'confirmed'},
+    ]},
+    { id:'d14', date:'10/07', dow:'Sex', city:'Kyoto · Kinkaku-ji + Arashiyama', cityClass:'kyoto', hotel:'Good Nature Hotel Kyoto', badge:null, activities:[]},
+    { id:'d15', date:'11/07', dow:'Sáb', city:'Kyoto → Osaka', cityClass:'osaka', hotel:'Mercure Tokyu Stay Osaka Namba', badge:null, activities:[
+      {t:'09h50', d:'🚃 JR Kyoto → Osaka (JR Pass · 35 min)'},
+      {t:'14h00', d:'Check-in Mercure Tokyu Stay Osaka Namba', c:true, tag:'hotel'},
+    ]},
+    { id:'d16', date:'12/07', dow:'Dom', city:'Osaka · DIA LIVRE', cityClass:'osaka', hotel:'Mercure Tokyu Stay Osaka Namba', badge:{text:'DIA LIVRE',color:'bg-emerald-200 text-emerald-800'}, free:true, activities:[]},
+    { id:'d17', date:'13/07', dow:'Seg', city:'Osaka · USJ', cityClass:'osaka', hotel:'Mercure Tokyu Stay Osaka Namba', badge:{text:'USJ — pendente compra',color:'bg-orange-300 text-orange-900'}, activities:[
+      {t:'⏳', d:'🎢 USJ + Express Pass PREMIUM — janela 13/05 02h BRT · PENDENTE COMPRA'},
+    ]},
+    { id:'d18', date:'14/07', dow:'Ter', city:'Osaka → Tóquio · Marunouchi', cityClass:'tokyo', hotel:'Hotel Metropolitan Tokyo Marunouchi', badge:null, activities:[
+      {t:'10h10', d:'🚄 Shinkansen Shin-Osaka → Tokyo (assentos A ou B · Fuji esquerda) · 3h10', c:true, tag:'flight'},
+      {t:'13h25', d:'Check-in Hotel Metropolitan Tokyo Marunouchi (1 noite · acesso indoor Tokyo Station)', c:true, tag:'hotel'},
+    ]},
+    { id:'d19', date:'15/07', dow:'Qua', city:'Tóquio → Doha', cityClass:'transit', hotel:null, badge:null, activities:[
+      {t:'11h00', d:'Check-out Hotel Metropolitan Tokyo Marunouchi'},
+      {t:'12h50', d:"🚃 N'EX Tokyo Station → Narita T2 (JR Pass · 1h15)", c:true, tag:'flight'},
+      {t:'17h25', d:'✈️ QR809 NRT → DOH (Boeing 777-300ER)', c:true, tag:'flight'},
+    ]},
+    { id:'d20', date:'16/07', dow:'Qui', city:'Doha → São Paulo', cityClass:'transit', hotel:null, badge:null, activities:[
+      {t:'01h55', d:'✈️ QR779 DOH → GRU (Airbus A350-1000)', c:true, tag:'flight'},
+      {t:'10h35', d:'Pouso GRU T3'},
+    ]},
+    { id:'d21', date:'17/07', dow:'Sex', city:'São Paulo → Brasília', cityClass:'transit', hotel:null, badge:null, activities:[
+      {t:'09h40', d:'✈️ LA3263 GRU → BSB · chegada 11h25', c:true, tag:'flight'},
+    ]},
+  ],
+  wishlist: [
+    {id:'w1', cat:'templo', title:'Uji — Byodo-in + Tsuen Tea', desc:'UNESCO + casa de chá mais antiga do Japão (1160)', time:'2h', price:'¥600', extra:'17 min JR de Kyoto'},
+    {id:'w2', cat:'templo', title:'Castelo de Osaka', desc:'8 andares museu história · GRÁTIS -15 anos', time:'2h', price:'¥600', extra:'Pedro/Felipe grátis'},
+    {id:'w3', cat:'templo', title:'Tofuku-ji', desc:'Templo zen com jardim coberto · plan B chuva Inari', time:'1h', price:'¥400', extra:'10 min de Fushimi Inari'},
+    {id:'w4', cat:'templo', title:'Imperial Palace East Gardens', desc:'Jardim tradicional · fecha 17h', time:'1h', price:'gratuito', extra:'12 min do Marunouchi · candidato 14/07'},
+    {id:'w5', cat:'templo', title:'Ueno Park + Tokyo National Museum', desc:'Alternativa calma · museu arte japonesa', time:'3h', price:'¥1.000', extra:'candidato 04/07'},
+    {id:'w6', cat:'templo', title:'Iwatayama Monkey Park (Arashiyama)', desc:'Macacos no topo + vista Kyoto', time:'1h30', price:'¥600', extra:'crianças amam · candidato 10/07'},
+    {id:'w50', cat:'templo', title:'Fushimi Inari-taisha', desc:'Mil torii vermelhos · sobe até Yotsutsuji (vista)', time:'2h', price:'gratuito', extra:'candidato 09/07 06h30 aniversário', fonte:'Paula Stephânia · Vai com Bruno · VPD Play · Djó Takashima'},
+    {id:'w51', cat:'templo', title:'Senso-ji + Kaminarimon + Nakamise-dori', desc:'Templo de Asakusa', time:'1h30', price:'gratuito', extra:'candidato 04/07', fonte:'Vai com Bruno · VPD Play · Gaby Coutinho'},
+    {id:'w52', cat:'templo', title:'Kiyomizu-dera', desc:'Templo UNESCO Kyoto · vista da varanda', time:'1h15', price:'¥500', extra:'candidato 08/07', fonte:'Vai com Bruno · VPD Play'},
+    {id:'w53', cat:'templo', title:'Sannen-zaka + Ninen-zaka', desc:'Ruelas de pedra históricas descendo Kiyomizu', time:'45min', price:'gratuito', extra:'candidato 08/07', fonte:'VPD Play'},
+    {id:'w54', cat:'templo', title:'Maruyama Park + Yasaka Shrine', desc:'Parque + santuário gratuito', time:'40min', price:'gratuito', extra:'candidato 08/07', fonte:'Vai com Bruno'},
+    {id:'w55', cat:'templo', title:'Hanamikoji / Gion walk', desc:'Rua tradicional de Gion · gueixas à noite', time:'30min', price:'gratuito', extra:'candidato 08 ou 09/07', fonte:'Vai com Bruno'},
+    {id:'w56', cat:'templo', title:'Nara Park + cervos + shika sembei', desc:'Cervos livres comendo biscoitos', time:'45min', price:'¥200 sembei', extra:'candidato 07/07', fonte:'Paula Stephânia · Djó Takashima · Status Viajante'},
+    {id:'w57', cat:'templo', title:'Tōdai-ji — Grande Buda', desc:'Templo UNESCO · Daibutsu de 15m', time:'1h', price:'¥600', extra:'candidato 07/07'},
+    {id:'w58', cat:'templo', title:'Kasuga Taisha', desc:'3000 lanternas de pedra', time:'30min', price:'gratuito', extra:'candidato 07/07'},
+    {id:'w59', cat:'templo', title:'Kinkaku-ji — Templo Dourado', desc:'Pavilhão dourado refletido no lago', time:'45min', price:'¥500', extra:'candidato 10/07', fonte:'VPD Play · Vai com Bruno · Djó Takashima'},
+    {id:'w60', cat:'templo', title:'Ryoan-ji — Jardim Zen', desc:'Famoso jardim de pedras 15 rochas', time:'45min', price:'¥600', extra:'candidato 10/07'},
+    {id:'w61', cat:'templo', title:'Tenryu-ji', desc:'Jardim Zen UNESCO em Arashiyama', time:'45min', price:'¥500', extra:'candidato 10/07', fonte:'Vai com Bruno'},
+    {id:'w62', cat:'templo', title:'Bamboo Grove Arashiyama', desc:'Floresta de bambu icônica · foto', time:'30min', price:'gratuito', extra:'candidato 10/07', fonte:'VPD Play · Vai com Bruno'},
+    {id:'w63', cat:'templo', title:'Togetsukyo Bridge + orla Oi-gawa', desc:'Ponte cênica Arashiyama', time:'30min', price:'gratuito', extra:'candidato 10/07'},
+    {id:'w64', cat:'templo', title:'Peace Memorial Museum Hiroshima', desc:'Museu da bomba atômica · 2h · contexto antes para Felipe', time:'2h', price:'¥200 ad / ¥50 cr', extra:'candidato 06/07 · pausa após 1h + 🍬 bala saída', fonte:'Paula Stephânia · Djó Takashima'},
+    {id:'w65', cat:'templo', title:'A-Bomb Dome + Peace Park', desc:'Memorial da paz · A-Bomb Dome UNESCO', time:'45min', price:'gratuito', extra:'candidato 06/07', fonte:'Paula Stephânia'},
+    {id:'w66', cat:'templo', title:'Itsukushima Shrine + Torii flutuante', desc:'Santuário UNESCO sobre o mar · checar maré', time:'45min', price:'¥300', extra:'candidato 06/07 · Miyajima', fonte:'Paula Stephânia'},
+    {id:'w67', cat:'templo', title:'Senjokaku + Pagoda Goju-no-to', desc:'Salão dos mil tatames · Miyajima', time:'30min', price:'¥100', extra:'candidato 06/07'},
+    {id:'w7', cat:'comida', title:'Pontocho', desc:'Beco gastronômico Kyoto à noite', time:'2h', price:'¥4–8k/pax', extra:'reservar TableCheck · candidato 05 ou 10/07'},
+    {id:'w8', cat:'comida', title:'Sōraku / Reichan Okonomimura', desc:'Hiroshima-yaki COM SOBA · show 15min chapa', time:'1h', price:'¥1.500/pax', extra:'candidato 06/07 pós Peace Museum'},
+    {id:'w9', cat:'comida', title:'Ippudo Kyoto', desc:'Ramen tonkotsu top · perto Kawaramachi', time:'45min', price:'¥1.500', extra:''},
+    {id:'w10', cat:'comida', title:'Saryo Suisen', desc:'Matcha + doces tradicionais Kawaramachi', time:'45min', price:'¥1.200', extra:''},
+    {id:'w11', cat:'comida', title:'Nakamura Tokichi', desc:'Matcha parfait premiado', time:'1h', price:'¥1.500', extra:'Kyoto ou Uji'},
+    {id:'w12', cat:'comida', title:'Ichiran Dotonbori', desc:'Ramen cabines · vista canal', time:'45min', price:'¥1.200', extra:'candidato 11 ou 12/07'},
+    {id:'w13', cat:'comida', title:'Kukuru Takoyaki Dotonbori', desc:'Melhor takoyaki da rua', time:'30min', price:'¥600', extra:'candidato 11/07'},
+    {id:'w14', cat:'comida', title:'Daruma Kushikatsu Shinsekai', desc:'Fritura no espeto clássica Osaka', time:'1h', price:'¥2.000/pax', extra:'candidato 12/07'},
+    {id:'w15', cat:'comida', title:'Sushizanmai Tsukiji', desc:'Sushi 24h · histórico', time:'1h', price:'¥3.000+', extra:''},
+    {id:'w16', cat:'comida', title:'Ramen Ichiran Tokyo Station B1', desc:'Clássico antes do voo', time:'30min', price:'¥1.200', extra:'candidato 14 ou 15/07'},
+    {id:'w17', cat:'comida', title:'Tonkatsu Maisen Aoyama', desc:'Tonkatsu top em Omotesando', time:'1h', price:'¥2.500', extra:'candidato 30/06'},
+    {id:'w70', cat:'comida', title:'Ichiran ou Tsuta Ramen Shinjuku', desc:'Jantar leve perto Sunroute · primeira noite tranquila', time:'45min', price:'¥1.500', extra:'candidato 29/06'},
+    {id:'w71', cat:'comida', title:'Genki Sushi / Uobei Shibuya', desc:'Sushi esteira/tablet · ótimo para família', time:'45min', price:'¥1.500/pax', extra:'candidato 30/06'},
+    {id:'w72', cat:'comida', title:'Fuunji Shinjuku', desc:'Tsukemen top de Tóquio', time:'45min', price:'¥1.300', extra:''},
+    {id:'w73', cat:'comida', title:'Tsuta Ramen Yoyogi', desc:'Ramen Michelin star', time:'1h', price:'¥1.800', extra:''},
+    {id:'w74', cat:'comida', title:'Rokurinsha Tokyo Station', desc:'Tsukemen top · no caminho', time:'45min', price:'¥1.300', extra:''},
+    {id:'w75', cat:'comida', title:'Kakinoha-sushi Naramachi', desc:'Sushi tradicional Nara · folha de caqui', time:'1h', price:'¥2.000', extra:'candidato 07/07 almoço'},
+    {id:'w76', cat:'comida', title:'Almoço em Gion', desc:'Restaurante tradicional', time:'1h', price:'¥3.000/pax', extra:'candidato 08/07'},
+    {id:'w77', cat:'comida', title:'Almoço Arashiyama beira Oi-gawa', desc:'Restaurante com vista do rio', time:'1h', price:'¥2.500/pax', extra:'candidato 10/07'},
+    {id:'w78', cat:'comida', title:'Última janta Kyoto (Pontocho/Kawaramachi)', desc:'Despedida Kyoto antes Osaka', time:'2h', price:'¥4-8k/pax', extra:'candidato 10/07'},
+    {id:'w79', cat:'comida', title:'Almoço especial aniversário Elaine', desc:'Restaurante refinado em Kyoto · planning', time:'1h30', price:'¥6-10k/pax', extra:'candidato 09/07 12h30'},
+    {id:'w80', cat:'comida', title:'Jantar despedida kaiseki Marunouchi/Ginza', desc:'Última noite Japão · experiência sofisticada', time:'2h+', price:'¥10-20k/pax', extra:'candidato 14/07 19h'},
+    {id:'w81', cat:'comida', title:'Momiji manju Omotesando Miyajima', desc:'Doce tradicional · souvenirs da ilha', time:'15min', price:'¥800', extra:'candidato 06/07'},
+    {id:'w18', cat:'compras', title:'Map Camera Shinjuku', desc:'Trade-in Canon R7 (Rodrigo)', time:'1h', price:'—', extra:'separar caixas + acessórios · candidato 30/06', fonte:'Vai com Bruno'},
+    {id:'w19', cat:'compras', title:'Yodobashi Akihabara', desc:'Eletrônicos premium', time:'2h', price:'—', extra:'Sony XM6, DJI Pocket', fonte:'Status Viajante · Vai com Bruno'},
+    {id:'w20', cat:'compras', title:'Don Quijote Dotonbori', desc:'24h, souvenirs caóticos', time:'1h', price:'—', extra:'', fonte:'Status Viajante · Gaby Coutinho · Vai com Bruno · VPD Play'},
+    {id:'w21', cat:'compras', title:'Itoya Ginza', desc:'Papelaria 12 andares', time:'1h', price:'—', extra:'candidato 14 ou 15/07', fonte:'Vai com Bruno · VPD Play'},
+    {id:'w22', cat:'compras', title:'Kitte Marunouchi', desc:'Shopping refinado conectado Tokyo Station', time:'1h', price:'—', extra:'candidato 14 ou 15/07'},
+    {id:'w23', cat:'compras', title:'Kuromon Market', desc:'Mercado de rua Osaka · sashimi, frutas, ostras', time:'1h30', price:'—', extra:'10 min Mercure · candidato 12/07'},
+    {id:'w24', cat:'compras', title:'Shinsaibashi-suji', desc:'Rua coberta de lojas Osaka · UNIQLO grande', time:'2h', price:'—', extra:'candidato 12/07'},
+    {id:'w25', cat:'compras', title:'Character Street Tokyo Station B1', desc:'Pokémon, Ghibli, Hello Kitty, Disney', time:'1h30', price:'—', extra:'candidato 14 ou 15/07'},
+    {id:'w26', cat:'compras', title:'Nakano Broadway', desc:'Anime alternativo a Akihabara · menos lotado', time:'2h', price:'—', extra:''},
+    {id:'w82', cat:'compras', title:'Takeshita-dori Harajuku', desc:'Rua icônica · doces, fashion alternativa', time:'1h', price:'—', extra:'candidato 30/06', fonte:'Paula Stephânia · VPD Play · Gaby Coutinho'},
+    {id:'w83', cat:'compras', title:'Omotesando walk', desc:'Avenida de marcas + arquitetura', time:'1h', price:'—', extra:'candidato 30/06'},
+    {id:'w84', cat:'compras', title:'Shibuya Crossing + Hachiko + Center-gai', desc:'Cruzamento mais famoso do mundo + estátua', time:'1h', price:'—', extra:'candidato 30/06', fonte:'Paula Stephânia · VPD Play · Vai com Bruno'},
+    {id:'w85', cat:'compras', title:'Walk Shinjuku noite (Kabukicho + Don Quijote + Omoide)', desc:'Bairro elétrico · Don Quijote 24h · yakitori Omoide', time:'1h30', price:'—', extra:'candidato 29/06 ou 04/07', fonte:'Vai com Bruno'},
+    {id:'w86', cat:'compras', title:'Nishiki Market — Cozinha de Kyoto', desc:'Mercado coberto · 400 anos · petiscos', time:'1h30', price:'—', extra:'fecha 17h30 · candidato 08/07', fonte:'VPD Play · Vai com Bruno'},
+    {id:'w87', cat:'compras', title:'Souvenirs Arashiyama', desc:'Lojas tradicionais perto do Bamboo', time:'1h', price:'—', extra:'candidato 10/07'},
+    {id:'w88', cat:'compras', title:'Teramachi Street Kyoto', desc:'Rua coberta com lojas tradicionais', time:'1h', price:'—', extra:''},
+    {id:'w27', cat:'cultura', title:'Samurai & Ninja Museum Kyoto', desc:'Vestir armadura + aula katana · Pedro+Felipe', time:'1h30', price:'¥3.300 / ¥2.200', extra:'candidato 09/07 manhã'},
+    {id:'w28', cat:'cultura', title:'Shibuya Sky', desc:'Pôr do sol 17h30 · vista 360°', time:'1h30', price:'¥2.000 / ¥1.200', extra:'reserva ~16/06 · candidato 30/06', fonte:'Vai com Bruno'},
+    {id:'w29', cat:'cultura', title:'Akihabara — Super Potato + arcades', desc:'Retrogames, anime, eletrônicos', time:'2h', price:'—', extra:'', fonte:'Vai com Bruno'},
+    {id:'w30', cat:'cultura', title:'Shinsekai + Tsutenkaku Tower', desc:'Bairro retrô Osaka + vista 360°', time:'2h', price:'¥1.000', extra:'candidato 12/07'},
+    {id:'w31', cat:'cultura', title:'Umeda Sky Building', desc:'Observatório arquitetura icônica', time:'1h30', price:'¥1.500', extra:''},
+    {id:'w32', cat:'cultura', title:'Lúcio Maeda — fotógrafo família', desc:'Inari/Arashiyama/Gion · coordena kimono', time:'2–3h', price:'sob orçamento', extra:'+81 90-4166-6314 · luciomaeda.com'},
+    {id:'w90', cat:'cultura', title:'Unicorn Gundam DiverCity Odaiba', desc:'Estátua transformável 19m', time:'30min', price:'gratuito', extra:'candidato 02/07'},
+    {id:'w91', cat:'cultura', title:'Miraikan (Museu Ciência) Odaiba', desc:'Robôs, ciência interativa · crianças amam', time:'2h', price:'¥630', extra:'candidato 02/07'},
+    {id:'w92', cat:'cultura', title:'Oedo Onsen Monogatari Odaiba', desc:'Onsen temático estilo Edo', time:'2h', price:'¥2.700', extra:'candidato 02/07'},
+    {id:'w93', cat:'cultura', title:'Disneyland atrações (Beauty&Beast, Pooh, Big Thunder, Splash)', desc:'Sugestões dentro do parque', time:'12-14h', price:'incluso ingresso', extra:'candidato 01/07'},
+    {id:'w94', cat:'cultura', title:'DisneySea atrações (Journey, Indiana, Soaring, Tower of Terror, Fantasy Springs)', desc:'Sugestões dentro do parque', time:'12-14h', price:'incluso ingresso', extra:'candidato 03/07'},
+    {id:'w95', cat:'cultura', title:'USJ atrações (Super Nintendo, HP, Jurassic, Minions, Spider-Man)', desc:'Sugestões dentro do parque com Express Premium', time:'12-14h', price:'incluso ingresso', extra:'candidato 13/07'},
+    {id:'w96', cat:'cultura', title:'Show noturno DisneySea (Lagoa Mediterrânea)', desc:'Show água/luz noturno', time:'30min', price:'incluso', extra:'candidato 03/07'},
+    {id:'w97', cat:'cultura', title:'Parade noturna USJ', desc:'Se houver energia no fim do dia', time:'45min', price:'incluso', extra:'candidato 13/07'},
+    {id:'w33', cat:'familia', title:'Spa World Shinsekai', desc:'8 andares onsen temático', time:'2–3h', price:'¥1.500', extra:'candidato 12/07'},
+    {id:'w34', cat:'familia', title:'Namba Parks', desc:'Shopping coberto · plan B chuva', time:'2h', price:'—', extra:'candidato 12/07 chuva'},
+    {id:'w35', cat:'familia', title:'Thermae-Yu Shinjuku', desc:'Onsen urbano em Tóquio', time:'2h', price:'¥3.000', extra:'candidato 04/07'},
+    {id:'w36', cat:'familia', title:'Kamakura day-trip', desc:'Grande Buda + Hase-dera + praia', time:'6h', price:'¥600 (entradas)', extra:'candidato 04/07'},
+    {id:'w99', cat:'familia', title:'Massagem Hiyoshi-Do Gion', desc:'Massagem tradicional pós-Maikoya · 09/07 17h', time:'1h', price:'¥8.000/pax', extra:'🔴 confirmar esta semana'},
+    {id:'w100', cat:'familia', title:'Gion Suetomo — jantar kaiseki aniversário', desc:'Restaurante kaiseki refinado em Gion · 09/07 19h', time:'2h+', price:'¥15-25k/pax', extra:'🔴 confirmar esta semana'},
+    {id:'w101', cat:'familia', title:'Tarde livre Mercure (piscina/descanso)', desc:'Descansar antes do USJ', time:'2-3h', price:'—', extra:'candidato 11/07 tarde'},
+    {id:'w102', cat:'familia', title:'Tarde livre Sunroute (descanso)', desc:'Buffer pós-Disney/TeamLab', time:'3-4h', price:'—', extra:'candidato 04/07'},
+    {id:'w103', cat:'familia', title:'Descanso pós-Inari (09/07)', desc:'1h banho/cama após manhã cedo', time:'1h', price:'—', extra:'candidato 09/07 09h30'},
+    {id:'w104', cat:'familia', title:'Hotel GRU noite 16/07', desc:'Hotel próximo Guarulhos · pouso 10h35 + voo BSB 17/07 09h40', time:'pernoite', price:'~R$ 400-600', extra:'🟡 confirmar com Elaine'},
+    {id:'w37', cat:'operacional', title:'Yamato Takkyubin (entrega bagagem)', desc:'Entrega bagagem entre hotéis · economiza 90min', time:'logística', price:'~¥2.500/mala', extra:'usar 05/07 e 11/07', fonte:'VPD Play · Gaby Coutinho'},
+    {id:'w38', cat:'operacional', title:'Ecbo Cloak (app bagagem)', desc:'Alternativa a coin lockers · sempre disponível', time:'—', price:'¥800/mala/dia', extra:'útil Kyoto Station 11/07'},
+    {id:'w39', cat:'operacional', title:'Visit Japan Web', desc:'Registrar QR codes 14 dias antes do voo', time:'15min', price:'gratuito', extra:'🟡 a partir 13/06', fonte:'Vai com Bruno · Gaby Coutinho'},
+    {id:'w40', cat:'operacional', title:'Suica DIGITAL', desc:'Apple Wallet ou Google Pay antes do voo', time:'10min', price:'¥0 (carregar)', extra:'🟡 economiza 30–45min Narita', fonte:'Vai com Bruno · Gaby Coutinho · Djó Takashima'},
+    {id:'w110', cat:'operacional', title:'JR Pass 21 dias', desc:'Passe ferroviário · 3 Ad + 1 Cr · ~¥350.000', time:'compra', price:'~R$ 11.500', extra:'🟡 venda abre 28/05 16h BRT'},
+    {id:'w111', cat:'operacional', title:'USJ Express Pass PREMIUM', desc:'Pacote mais completo · todas atrações + Mario Area', time:'compra', price:'~R$ 5.300-7.700 família', extra:'🔴 janela 13/05 02h BRT'},
+    {id:'w112', cat:'operacional', title:'Shibuya Sky ingresso', desc:'Slot 17h30 pôr do sol · 3 Ad + 1 Cr', time:'compra', price:'~¥7.200 família', extra:'🟡 venda abre ~16/06'},
+    {id:'w113', cat:'operacional', title:'eSIM Airalo 4 pessoas', desc:'Internet móvel antes do voo · 20 dias', time:'15min', price:'~R$ 400/família', extra:'🟡 ativar antes embarque'},
+    {id:'w114', cat:'operacional', title:'Seguro viagem 4 pax', desc:'27/06–17/07 · cobertura USD 30k', time:'compra', price:'~R$ 800', extra:'🟡 antes embarque'},
+    {id:'w115', cat:'operacional', title:'Hidratação + protetor solar (comprar Brasil)', desc:'Julho 32-36°C, 75-85% umidade · Pocari Sweat konbinis', time:'—', price:'~R$ 200', extra:'antes da viagem'},
+    {id:'w116', cat:'operacional', title:'Sala VIP Doha (ida + volta)', desc:'Oryx Lounge ou Al Maha · pesquisado 2026-05-11', time:'6h cada', price:'USD 96-500 dep. cartão', extra:'checar Priority Pass cartão'},
+    {id:'w117', cat:'operacional', title:"Ativar JR Pass + N'EX Narita→Shinjuku", desc:'Balcão JR East no Narita · 1h20 trem', time:'~1h30', price:'incluso JR Pass', extra:'candidato 29/06 14h'},
+    {id:'w118', cat:'operacional', title:'Toei Oedo Subway (Shinjuku → Tsukishima)', desc:'Acesso TeamLab · 25–30 min · Suica', time:'30min', price:'~¥330', extra:'candidato 02/07 07h45'},
+    {id:'w119', cat:'operacional', title:'Yurikamome monotrilho Odaiba', desc:'15 min panorâmico Shin-Toyosu→Odaiba', time:'15min', price:'~¥330', extra:'candidato 02/07'},
+    {id:'w120', cat:'operacional', title:'JR Keiyo Shinjuku → Maihama (Disney)', desc:'40 min · JR Pass cobre', time:'40min', price:'incluso JR Pass', extra:'candidato 01/07 e 03/07'},
+    {id:'w121', cat:'operacional', title:'Bus 207 Kyoto → Kiyomizumichi', desc:'Acesso Kiyomizu-dera', time:'15min', price:'¥230', extra:'candidato 08/07'},
+    {id:'w122', cat:'operacional', title:'Randen Tram Keifuku', desc:'Trem nostálgico Ryoanji → Arashiyama', time:'15min', price:'¥220 (não JR Pass)', extra:'candidato 10/07'},
+    {id:'w123', cat:'operacional', title:'Ferry Miyajimaguchi → Miyajima', desc:'10 min · JR Pass cobre', time:'10min', price:'incluso JR Pass', extra:'candidato 06/07'},
+    {id:'w41', cat:'fotos', title:'Sessão Lúcio Maeda · Fushimi Inari', desc:'06h00 dia 09/07 antes da família subir', time:'2h', price:'sob orçamento', extra:'aniversário Elaine'},
+    {id:'w42', cat:'fotos', title:'Hokokuji Bamboo (Kamakura)', desc:'Alternativa ao Arashiyama · menos turística', time:'1h', price:'¥300', extra:''},
+    {id:'w43', cat:'fotos', title:'Gion à noite (19h–20h)', desc:'Gueixas indo trabalhar · respeitoso, sem flash', time:'1h', price:'—', extra:''},
+    {id:'w44', cat:'fotos', title:'Hakone (REMOVIDO)', desc:'⛔ Elaine cortou (reduzir desgaste)', time:'—', price:'—', extra:'manter como referência'},
+    // --- NotebookLM 2026-05-11: novos itens ---
+    // Templos e Santuários
+    {id:'w200', cat:'templo', title:'Gotokuji', desc:'Templo original dos gatos da sorte (Maneki Neko) · Setagaya, off the beaten path', time:'1h', price:'grátis', extra:'Tóquio', fonte:'Status Viajante'},
+    {id:'w201', cat:'templo', title:'Nezu Shrine', desc:'Versão compacta dos túneis torii · jardins de azaleia · bem menos caótico que Fushimi', time:'1h', price:'grátis', extra:'Tóquio', fonte:'Vai com Bruno'},
+    {id:'w202', cat:'templo', title:'Nanzen-ji', desc:'Complexo arborizado e tranquilo em Kyoto · área zen sem superlotação turística', time:'1.5h', price:'¥600', extra:'Kyoto', fonte:'Vai com Bruno'},
+    {id:'w203', cat:'templo', title:'Caminho do Filósofo', desc:'Caminhada de 2km à beira de canal · cerejeiras (fora de época) · silêncio raro', time:'45min', price:'grátis', extra:'Kyoto', fonte:'Paula Stephânia'},
+    {id:'w204', cat:'templo', title:'Castelo de Nijo', desc:'Piso de madeira "nightingale" que canta ao pisar · alarme ninja histórico', time:'1.5h', price:'¥1.300', extra:'Kyoto', fonte:'Vai com Bruno'},
+    {id:'w205', cat:'templo', title:'Palácio Imperial de Kyoto', desc:'Residência imperial histórica · reserva gratuita pelo Imperial Household Agency', time:'1h', price:'grátis', extra:'Kyoto', fonte:'Vai com Bruno'},
+    // Museus, Mirantes e Atrações
+    {id:'w210', cat:'cultura', title:'TeamLab Borderless (Azabudai)', desc:'Arte digital imersiva sem roteiro definido · diferente do Planets (já no cronograma) · AC', time:'3h', price:'¥3.200', extra:'Tóquio', fonte:'Gaby Coutinho · VPD Play'},
+    {id:'w211', cat:'cultura', title:'Tokyo Skytree', desc:'Mirante 340m · shopping Solamachi na base · vista 360° da cidade', time:'2h', price:'¥2.100', extra:'Tóquio', fonte:'Gaby Coutinho · Vai com Bruno'},
+    {id:'w212', cat:'cultura', title:'Tokyo Tower', desc:'Torre de aço vermelha iluminada à noite · ótima para foto do Zojoji ao fundo', time:'1h', price:'¥1.200', extra:'Tóquio', fonte:'VPD Play'},
+    {id:'w213', cat:'fotos', title:'Chureito Pagoda', desc:'400 degraus · foto clássica Fuji + pagoda vermelha · melhor de manhã cedo', time:'2h', price:'¥400', extra:'Fujiyoshida', fonte:'Vai com Bruno · Gaby Coutinho'},
+    {id:'w214', cat:'cultura', title:'5ª Estação Monte Fuji', desc:'Ponto mais alto de ônibus de excursão · visão do Fuji de perto (nuvens permitem)', time:'1h trecho', price:'incluso em tour', extra:'Monte Fuji', fonte:'Vai com Bruno'},
+    {id:'w215', cat:'familia', title:'Monkey Park Iwatayama', desc:'Macacos soltos no cume · vista panorâmica de Kyoto · crianças adoram', time:'1.5h', price:'¥600', extra:'Arashiyama/Kyoto', fonte:'VPD Play'},
+    {id:'w216', cat:'cultura', title:'Hakone Open Air Museum', desc:'Esculturas gigantes ao ar livre + Picasso + onsen de pés · museu mais visitado do Japão', time:'3h', price:'¥1.600', extra:'Hakone', fonte:'Djó Takashima'},
+    {id:'w217', cat:'familia', title:'Museu Ghibli (Mitaka)', desc:'Fãs de Totoro/Chihiro · ingresso esgota meses antes · comprar online antecipado', time:'3h', price:'¥1.000', extra:'Mitaka/Tóquio', fonte:'Paula Stephânia'},
+    {id:'w218', cat:'familia', title:'Museu Cup Noodles', desc:'Pintar copo personalizado + criar miojo com ingredientes exclusivos · Pedro e Felipe vão amar', time:'2h', price:'¥500+materiais', extra:'Yokohama ou Osaka', fonte:'Status Viajante · Djó Takashima'},
+    {id:'w219', cat:'cultura', title:'Ilha de Enoshima', desc:'Bondinho retrô Enoden · praia de pedra escura · grutas oceânicas · alternativa a Kamakura', time:'3h', price:'¥500', extra:'Fujisawa/Kanagawa', fonte:'Lucas & Kaho Brazuca'},
+    {id:'w220', cat:'cultura', title:'Yunokuni no Mori (Kanazawa)', desc:'Vila temática com 30+ oficinas de artesanato · lacagem, papel washi, cerâmica', time:'3h', price:'¥600+oficinas', extra:'Kanazawa', fonte:'Paula Stephânia'},
+    {id:'w221', cat:'cultura', title:'Kenroku-en + Bairro dos Samurais', desc:'1 dos 3 jardins mais belos do Japão · Nagamachi: ruelas de samurais com muros de argila', time:'3h', price:'¥320', extra:'Kanazawa', fonte:'Paula Stephânia'},
+    // Bairros e Ruas
+    {id:'w230', cat:'cultura', title:'Kabukicho / Godzilla Road (Shinjuku)', desc:'Hotel Gracery: Godzilla gigante ruge toda hora no alto · rua de néon mais intensa de Tóquio', time:'1.5h', price:'grátis ver externo', extra:'Shinjuku/Tóquio', fonte:'Vai com Bruno · VPD Play · Gaby Coutinho'},
+    {id:'w231', cat:'cultura', title:'Universal CityWalk Osaka', desc:'Complexo de bares/restaurantes temáticos na saída da Universal · jantar pós-parque', time:'1h', price:'conforme consumo', extra:'Osaka', fonte:'Status Viajante'},
+    // Gastronomia
+    {id:'w240', cat:'comida', title:'Pepper Parlor (Shibuya)', desc:'Garçons robôs dançarinos · dançam Gangnam Style · crianças ficam malucos', time:'1.5h', price:'¥2.000–3.000', extra:'Shibuya/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w241', cat:'comida', title:'Share Lounge (Shibuya)', desc:'~R$60/hora · buffet livre de comida e bebida · vista privilegiada do Cruzamento de Shibuya', time:'2h', price:'¥1.500/hr', extra:'Shibuya/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w242', cat:'comida', title:'Café 2D (Shin-Okubo)', desc:'Decoração de desenho animado black & white · bolo de morango em copo · Coreia Town ao redor', time:'1h', price:'¥800–1.500', extra:'Shin-Okubo/Tóquio', fonte:'VPD Play'},
+    {id:'w243', cat:'comida', title:'Chao Chao Gyoza (Kyoto)', desc:'23 lugares · mini guiozas crocantes em estilos variados · fila vale a pena', time:'1h', price:'¥1.000', extra:'Kyoto', fonte:'VPD Play'},
+    {id:'w244', cat:'comida', title:'Starbucks Tatami (Ninenzaka)', desc:'Única unidade do mundo com sala de tatame · sentar no chão de joelhos em casarão histórico', time:'30min', price:'¥600+', extra:'Kyoto', fonte:'Vai com Bruno'},
+    {id:'w245', cat:'comida', title:'Sushiro', desc:'Sushi de esteira de alta qualidade · pedido por tablet · melhor custo-benefício da viagem', time:'1h', price:'¥1.500–2.500', extra:'várias unidades', fonte:'Vai com Bruno'},
+    {id:'w246', cat:'comida', title:"I'm Donut / W Donut (Harajuku)", desc:'Donuts virais superrecheados · fila gigante · comer na hora (amolece rápido)', time:'30min', price:'¥300–600/un', extra:'Harajuku/Tóquio', fonte:'VPD Play · Gaby Coutinho'},
+    {id:'w247', cat:'comida', title:'Marion Crepes (Harajuku)', desc:'Crepe icônico japonês com chantilly e morango · comer andando na Takeshita', time:'20min', price:'¥600–900', extra:'Harajuku/Tóquio', fonte:'VPD Play'},
+    {id:'w248', cat:'comida', title:'Tsuji Han (Ginza)', desc:'Bowl de frutos do mar com ouro folha · famoso no TikTok · fila de 2h+ · valer a espera?', time:'2h fila+refeição', price:'¥2.000–3.000', extra:'Ginza/Tóquio', fonte:'VPD Play'},
+    {id:'w249', cat:'comida', title:"Kinopio's Cafe (USJ)", desc:'Café temático do Mario dentro da Nintendo World · comida fofa de Cogumelo · fila virtual obrigatória', time:'1.5h', price:'¥2.000–3.000', extra:'USJ/Osaka', fonte:"Status Viajante · Vai com Bruno"},
+    {id:'w250', cat:'comida', title:'Saizeriya', desc:'Rede italiana ultrabarata · boa opção de descanso do asiático · pizza e massa por ¥300', time:'1h', price:'¥300–800', extra:'várias unidades', fonte:'Djó Takashima'},
+    {id:'w251', cat:'comida', title:'Koe Donuts (Kyoto)', desc:'Arquitetura deslumbrante de Kengo Kuma · donut em si é médio mas o espaço é incrível', time:'30min', price:'¥400–600', extra:'Kyoto', fonte:'VPD Play'},
+    // Lojas e Compras
+    {id:'w260', cat:'compras', title:'Bic Camera', desc:'Eletrônicos e câmeras · Tax-Free · concorrente do Yodobashi · verificar preço de câmeras', time:'1h', price:'conforme compra', extra:'várias unidades', fonte:'Vai com Bruno · VPD Play'},
+    {id:'w261', cat:'compras', title:'Loft', desc:'Papelaria criativa, skincare, itens de casa · design japonês impecável · vários andares', time:'1.5h', price:'conforme compra', extra:'Ginza e outros', fonte:'Vai com Bruno · Gaby Coutinho'},
+    {id:'w262', cat:'compras', title:'Muji', desc:'Bolsas organizadoras de viagem · sem logotipo · qualidade alta · ótimas lembranças funcionais', time:'1h', price:'conforme compra', extra:'várias unidades', fonte:'Vai com Bruno · Gaby Coutinho · VPD Play'},
+    {id:'w263', cat:'compras', title:'GU', desc:'Versão jovem e barata da Uniqlo · moda asiática atual · peças por ¥500–1.500', time:'1h', price:'conforme compra', extra:'várias unidades', fonte:'Vai com Bruno · Gaby Coutinho'},
+    {id:'w264', cat:'compras', title:'ABC Mart', desc:'Adidas/Nike/NB/Asics pela metade do preço BR · loja de tênis mais popular do Japão', time:'1h', price:'conforme compra', extra:'várias unidades', fonte:'Status Viajante · Vai com Bruno'},
+    {id:'w265', cat:'compras', title:'Onitsuka Tiger (Shinjuku)', desc:'Tênis amarelo clássico do Kill Bill · modelo Mexico 66 · exclusivos japoneses', time:'45min', price:'¥10.000–16.000', extra:'Shinjuku/Tóquio', fonte:'VPD Play · Gaby Coutinho'},
+    {id:'w266', cat:'compras', title:'Disney Store (Shibuya)', desc:'Pelúcias e chaveiros exclusivos do mercado japonês · designs que não existem fora do Japão', time:'1h', price:'conforme compra', extra:'Shibuya/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w267', cat:'compras', title:'Harry Potter Mahou Dokoro', desc:'Varinhas interativas sem precisar ir ao parque · loja oficial em Akasaka', time:'1h', price:'¥5.500–8.000', extra:'Akasaka/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w268', cat:'compras', title:'Travelers Factory', desc:'Papelaria/journaling de luxo · cadernos de couro Midori · destino cult para papelófilos', time:'1h', price:'conforme compra', extra:'Nakameguro/Tóquio', fonte:'VPD Play'},
+    {id:'w269', cat:'compras', title:'Bookoff / 2nd Street', desc:'Brechó de games, mangás e roupas seminovos · Super Famicom a ¥200 · garimpo garantido', time:'1.5h', price:'conforme compra', extra:'várias unidades', fonte:'Djó Takashima'},
+    {id:'w270', cat:'compras', title:'@cosme / Cosme Store (Harajuku)', desc:'Ranking oficial de cosméticos mais vendidos no Japão · skincare que não chega no BR', time:'1h', price:'conforme compra', extra:'Harajuku/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w271', cat:'compras', title:'Daiso (¥100)', desc:'Tudo por ¥100 · lembranças baratas · sacolinhas de pano · itens de cozinha incríveis', time:'1h', price:'¥100/item', extra:'várias unidades', fonte:'Gaby Coutinho'},
+    {id:'w272', cat:'compras', title:'Zara Japão', desc:'Coleções asiáticas exclusivas que não chegam no Brasil · vale checar especialmente roupas', time:'45min', price:'conforme compra', extra:'Shibuya e outros', fonte:'Status Viajante'},
+    {id:'w273', cat:'compras', title:'Wiggle Wiggle (Harajuku)', desc:'Acessórios coloridos kawaii · bolsas, meias, papelaria · gosto de Elaine e crianças', time:'45min', price:'conforme compra', extra:'Harajuku/Tóquio', fonte:'Gaby Coutinho'},
+    {id:'w274', cat:'compras', title:'Mandarake (Akihabara)', desc:'Mangás e action figures raros · itens fora de linha · vários andares · não confundir com Bookoff', time:'1.5h', price:'conforme compra', extra:'Akihabara/Tóquio', fonte:'Vai com Bruno'},
+    // Experiências
+    {id:'w280', cat:'operacional', title:'Mario Kart de Rua', desc:'Fantasias de Mario · PID internacional necessária · crianças < 12a NÃO podem dirigir · Pedro talvez', time:'2h', price:'¥8.000–10.000', extra:'Tóquio', fonte:'Gaby Coutinho'},
+    {id:'w281', cat:'familia', title:'Taito Station / Arcades (Akihabara)', desc:'Máquinas de garra (UFO catchers) · tambores Taiko · Medal games · horas de diversão', time:'2h', price:'¥1.000–3.000', extra:'Akihabara/Tóquio', fonte:'Vai com Bruno'},
+    {id:'w282', cat:'cultura', title:'Ryokan com Onsen', desc:'Futon no chão · banho coletivo em água termal · experiência 100% japonesa · reservar com antecedência', time:'1 noite', price:'¥15.000–30.000/pessoa', extra:'Hakone ou Kyoto', fonte:'Djó Takashima'},
+  ],
+  migrations: []
+};
+
+// ============ STATE ============
+const STORAGE_KEY = 'roteiro-japao-workspace-v2';
+let state = loadState();
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.version === INITIAL_STATE.version) return parsed;
+    }
+  } catch(e) {}
+  return JSON.parse(JSON.stringify(INITIAL_STATE));
+}
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  updateStats();
+}
+
+// ============ RENDER ============
+function renderDays() {
+  const cont = document.getElementById('dias');
+  cont.innerHTML = state.days.map(day => {
+    const cls = `day-card city-${day.cityClass} bg-white rounded-xl shadow-sm p-3 sm:p-4 ${day.free?'day-free':''} ${day.birthday?'day-birthday':''} ${day.intense?'day-intense':''}`;
+    const badge = day.badge ? `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${day.badge.color}">${day.badge.text}</span>` : '';
+    const hotel = day.hotel ? `<p class="text-xs text-slate-500 mt-0.5">🏨 ${day.hotel}</p>` : '';
+    const acts = (day.activities||[]).map((a,i) => {
+      const chipMap = {confirmed:'<span class="chip-confirmed">✅ CONFIRMADO</span>', flight:'<span class="chip-flight">✈️ VOO</span>', hotel:'<span class="chip-hotel">🏨 HOTEL</span>', park:'<span class="chip-park">🎢 INGRESSO</span>'};
+      const chip = a.tag && chipMap[a.tag] ? chipMap[a.tag] : '';
+      return `
+      <div class="activity flex items-start gap-2 py-1 group ${a.c ? 'confirmed' : ''}" data-day="${day.id}" data-idx="${i}">
+        <span class="text-[11px] font-mono text-slate-500 shrink-0 w-16 pt-0.5">${escapeHtml(a.t||'')}</span>
+        <div class="flex-1 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+          <span class="text-sm text-slate-700" contenteditable="true" data-field="d">${escapeHtml(a.d||'')}</span>
+          ${chip}
+        </div>
+        ${a.migrated ? `<span class="migrated-badge text-[10px] bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full font-semibold shrink-0">✨ wishlist</span>` : ''}
+        ${a.migrated ? `<button class="return-btn text-xs text-slate-400 hover:text-red-600 shrink-0" title="Devolver para wishlist" data-action="return">↺</button>` : `<button class="return-btn text-xs text-slate-300 hover:text-red-500 shrink-0" title="Remover atividade" data-action="delete">✕</button>`}
+      </div>
+    `;}).join('');
+    return `
+      <article class="${cls}" data-day-id="${day.id}">
+        <header class="flex items-center justify-between gap-2 mb-2">
+          <div>
+            <h3 class="font-bold text-sm sm:text-base">${day.date} <span class="text-slate-500 font-normal">${day.dow}</span> · <span class="text-slate-700">${escapeHtml(day.city)}</span></h3>
+            ${hotel}
+          </div>
+          ${badge}
+        </header>
+        <div class="space-y-0">${acts}</div>
+      </article>
+    `;
+  }).join('');
+  // Attach edit + return + delete listeners
+  cont.querySelectorAll('[contenteditable=true]').forEach(el => {
+    el.addEventListener('blur', () => {
+      const wrap = el.closest('.activity');
+      const dayId = wrap.dataset.day;
+      const idx = parseInt(wrap.dataset.idx);
+      const day = state.days.find(d => d.id === dayId);
+      if (day) { day.activities[idx].d = el.innerText.trim(); saveState(); }
+    });
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); el.blur(); }
+    });
+  });
+  cont.querySelectorAll('[data-action="return"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const wrap = btn.closest('.activity');
+      const dayId = wrap.dataset.day;
+      const idx = parseInt(wrap.dataset.idx);
+      const day = state.days.find(d => d.id === dayId);
+      const act = day.activities[idx];
+      if (!act.wishlistRef) return;
+      // restore wishlist item
+      const orig = INITIAL_STATE.wishlist.find(w => w.id === act.wishlistRef);
+      if (orig && !state.wishlist.find(w => w.id === orig.id)) state.wishlist.push(JSON.parse(JSON.stringify(orig)));
+      day.activities.splice(idx, 1);
+      state.migrations = state.migrations.filter(m => !(m.wishlistId === act.wishlistRef && m.dayDate === day.date));
+      saveState();
+      renderAll();
+    });
+  });
+  cont.querySelectorAll('[data-action="delete"]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!confirm('Remover esta atividade?')) return;
+      const wrap = btn.closest('.activity');
+      const dayId = wrap.dataset.day;
+      const idx = parseInt(wrap.dataset.idx);
+      const day = state.days.find(d => d.id === dayId);
+      day.activities.splice(idx, 1);
+      saveState();
+      renderAll();
+    });
+  });
+}
+
+function getCidade(w) {
+  const extra = (w.extra||'').toLowerCase();
+  const desc  = (w.desc||'').toLowerCase();
+  const title = (w.title||'').toLowerCase();
+  const all   = `${title} ${desc} ${extra}`;
+  // explicit single-city extra (new items)
+  const explicit = (w.extra||'').trim();
+  if (['Tóquio','Tokyo'].includes(explicit)) return 'Tóquio';
+  if (explicit === 'Kyoto') return 'Kyoto';
+  if (explicit === 'Osaka') return 'Osaka';
+  if (explicit === 'Hiroshima') return 'Hiroshima';
+  if (explicit === 'Nara') return 'Nara';
+  if (['Hakone ou Kyoto','Hakone'].includes(explicit)) return 'Hakone/Fuji';
+  if (explicit === 'Fujiyoshida') return 'Hakone/Fuji';
+  if (explicit === 'Fujisawa/Kanagawa') return 'Kamakura';
+  if (explicit === 'Kanazawa') return 'Kanazawa';
+  if (explicit === 'Uji') return 'Uji';
+  if (['Yokohama ou Osaka','USJ/Osaka','Osaka'].some(x=>explicit===x)) return 'Osaka';
+  if (['Mitaka/Tóquio','Shin-Okubo/Tóquio','Harajuku/Tóquio','Shibuya/Tóquio','Akihabara/Tóquio','Ginza/Tóquio','Nakameguro/Tóquio','Akasaka/Tóquio','Shinjuku/Tóquio'].includes(explicit)) return 'Tóquio';
+  if (['várias unidades','várias unidades'].includes(explicit)) return 'Geral';
+  // candidato date → city
+  const m6 = all.match(/candidato \d+\/06/);
+  if (m6) return 'Tóquio';
+  const m7 = all.match(/candidato (\d+)\/07/);
+  if (m7) {
+    const d = parseInt(m7[1]);
+    if (d<=4||d>=14) return 'Tóquio';
+    if (d===5) return 'Kyoto';
+    if (d===6) return 'Hiroshima';
+    if (d===7) return 'Nara';
+    if (d>=8&&d<=10) return 'Kyoto';
+    if (d>=11&&d<=13) return 'Osaka';
+  }
+  // keyword fallback
+  if (/kyoto|fushimi|kinkaku|ryoan|tenryu|bamboo grove|kiyomizu|ninen|sannen|maruyama|hanamikoji|gion|arashiyama|nijo|nanzen|filósofo|palácio imperial|byodo|tofuku|togetsukyo|oi-gawa|pontocho|nakamura tokichi|saryo|ippudo kyoto|chao chao|koe donut|starbucks tatami|teramachi/.test(all)) return 'Kyoto';
+  if (/osaka|dotonbori|shinsekai|tsutenkaku|namba|shinsaibashi|usj|universal|kuromon|spa world|kukuru|daruma|ichiran dotonbori|citywall/.test(all)) return 'Osaka';
+  if (/hiroshima|miyajima|peace memorial|a-bomb|itsukushima|senjokaku|okonomimura|momiji manju/.test(all)) return 'Hiroshima';
+  if (/\bnara\b|kasuga|todai|kakinoha|cervos|shika/.test(all)) return 'Nara';
+  if (/kamakura|enoshima|hokokuji|yuigahama/.test(all)) return 'Kamakura';
+  if (/hakone|chureito|fuji|monte fuji|open air museum/.test(all)) return 'Hakone/Fuji';
+  if (/kanazawa|kenroku|yunokuni|samurais kanazawa/.test(all)) return 'Kanazawa';
+  if (/\buji\b|byodo|tsuen tea/.test(all)) return 'Uji';
+  if (/shinjuku|harajuku|shibuya|akihabara|odaiba|asakusa|ginza|marunouchi|akasaka|nakameguro|shin.okubo|omotesando|ueno|sunroute|kabukicho|thermae|godzilla road|travelers factory|disney store shibuya/.test(all)) return 'Tóquio';
+  return 'Geral';
+}
+
+function renderWishlist() {
+  const cont = document.getElementById('wishlist');
+  const filterCat    = document.getElementById('filter-cat').value;
+  const filterCidade = document.getElementById('filter-cidade').value;
+  const filterFonte  = document.getElementById('filter-fonte').value;
+  const catIcons = {templo:'🏛️',comida:'🍜',compras:'🛍️',cultura:'🎨',familia:'🏖️',operacional:'⚙️',fotos:'📷'};
+  const items = state.wishlist.filter(w => {
+    if (filterCat !== 'all' && w.cat !== filterCat) return false;
+    if (filterCidade !== 'all' && getCidade(w) !== filterCidade) return false;
+    if (filterFonte !== 'all') {
+      if (filterFonte === '__sem') { if (w.fonte) return false; }
+      else if (!w.fonte || !w.fonte.includes(filterFonte)) return false;
+    }
+    return true;
+  });
+  if (items.length === 0) {
+    cont.innerHTML = `<p class="text-xs text-slate-400 italic text-center py-6">Nada nessa categoria. Tudo migrado? 🎉</p>`;
+    return;
+  }
+  cont.innerHTML = items.map(w => `
+    <div class="wish-item bg-white rounded-lg p-2.5 border border-slate-200" data-id="${w.id}">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex-1 min-w-0">
+          <div class="font-semibold text-sm flex items-center gap-1"><span>${catIcons[w.cat]||'•'}</span><span>${escapeHtml(w.title)}</span></div>
+          <p class="text-xs text-slate-600 mt-0.5">${escapeHtml(w.desc)}</p>
+          <div class="flex flex-wrap gap-1 mt-1 text-[10px] text-slate-500">
+            ${w.time?`<span class="bg-slate-100 px-1.5 py-0.5 rounded">⏱ ${escapeHtml(w.time)}</span>`:''}
+            ${w.price?`<span class="bg-slate-100 px-1.5 py-0.5 rounded">💴 ${escapeHtml(w.price)}</span>`:''}
+            ${w.extra?`<span class="bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded">${escapeHtml(w.extra)}</span>`:''}
+            ${w.fonte?`<span class="bg-sky-50 text-sky-600 px-1.5 py-0.5 rounded">📺 ${escapeHtml(w.fonte)}</span>`:''}
+          </div>
+        </div>
+        <button data-action="migrate" data-id="${w.id}" class="text-[11px] font-semibold bg-blue-600 text-white px-2 py-1 rounded shrink-0 hover:bg-blue-700">→ Migrar</button>
+      </div>
+    </div>
+  `).join('');
+  cont.querySelectorAll('[data-action="migrate"]').forEach(btn => {
+    btn.addEventListener('click', () => openMigrateModal(btn.dataset.id));
+  });
+}
+
+function renderAll() { renderDays(); renderWishlist(); updateStats(); }
+function updateStats() {
+  document.getElementById('roteiro-stats').textContent = `${state.days.length} dias · ${state.days.reduce((s,d)=>s+(d.activities?.length||0),0)} atividades`;
+  document.getElementById('wishlist-stats').textContent = `${state.wishlist.length} itens · ${state.migrations.length} migrados`;
+}
+
+// ============ MIGRATE MODAL ============
+let pendingMigrationId = null;
+function openMigrateModal(wishId) {
+  pendingMigrationId = wishId;
+  const item = state.wishlist.find(w => w.id === wishId);
+  document.getElementById('modal-item-name').textContent = item ? item.title : '';
+  const sel = document.getElementById('modal-day-select');
+  sel.innerHTML = state.days.map(d => `<option value="${d.id}">${d.date} ${d.dow} · ${d.city.substring(0,40)}</option>`).join('');
+  document.getElementById('modal-migrate').classList.remove('hidden');
+  document.getElementById('modal-migrate').classList.add('flex');
+}
+function closeMigrateModal() {
+  document.getElementById('modal-migrate').classList.add('hidden');
+  document.getElementById('modal-migrate').classList.remove('flex');
+  pendingMigrationId = null;
+}
+document.getElementById('modal-cancel').addEventListener('click', closeMigrateModal);
+document.getElementById('modal-confirm').addEventListener('click', () => {
+  if (!pendingMigrationId) return;
+  const dayId = document.getElementById('modal-day-select').value;
+  const wish = state.wishlist.find(w => w.id === pendingMigrationId);
+  const day = state.days.find(d => d.id === dayId);
+  if (!wish || !day) return;
+  day.activities.push({
+    t: '?', // user edita depois
+    d: `${wish.title} — ${wish.desc}${wish.time?' · '+wish.time:''}${wish.price?' · '+wish.price:''}`,
+    migrated: true,
+    wishlistRef: wish.id,
+  });
+  state.migrations.push({wishlistId: wish.id, dayDate: day.date, migratedAt: new Date().toISOString()});
+  state.wishlist = state.wishlist.filter(w => w.id !== wish.id);
+  saveState();
+  closeMigrateModal();
+  renderAll();
+});
+
+// ============ ADD MODAL ============
+document.getElementById('btn-add').addEventListener('click', () => {
+  document.getElementById('modal-add').classList.remove('hidden');
+  document.getElementById('modal-add').classList.add('flex');
+  document.getElementById('add-title').focus();
+});
+document.getElementById('add-cancel').addEventListener('click', () => {
+  document.getElementById('modal-add').classList.add('hidden');
+  document.getElementById('modal-add').classList.remove('flex');
+});
+document.getElementById('add-confirm').addEventListener('click', () => {
+  const title = document.getElementById('add-title').value.trim();
+  if (!title) { alert('Nome obrigatório'); return; }
+  const newItem = {
+    id: 'w' + Date.now(),
+    cat: document.getElementById('add-cat').value,
+    title,
+    desc: document.getElementById('add-desc').value.trim(),
+    time: document.getElementById('add-time').value.trim(),
+    price: document.getElementById('add-price').value.trim(),
+    extra: '',
+  };
+  state.wishlist.push(newItem);
+  saveState();
+  ['add-title','add-desc','add-time','add-price'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('modal-add').classList.add('hidden');
+  document.getElementById('modal-add').classList.remove('flex');
+  renderWishlist();
+});
+
+// ============ FILTERS / BUTTONS ============
+document.getElementById('filter-cat').addEventListener('change', renderWishlist);
+document.getElementById('filter-cidade').addEventListener('change', renderWishlist);
+document.getElementById('filter-fonte').addEventListener('change', renderWishlist);
+document.getElementById('btn-print').addEventListener('click', () => window.print());
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('Reset apaga todas as alterações (migrações, edições, novos itens). Continuar?')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  state = JSON.parse(JSON.stringify(INITIAL_STATE));
+  renderAll();
+});
+document.getElementById('btn-export').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `roteiro-japao-workspace-${new Date().toISOString().slice(0,10)}.json`; a.click();
+  URL.revokeObjectURL(url);
+});
+document.getElementById('file-import').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.days || !data.wishlist) throw new Error('JSON inválido');
+      state = data; saveState(); renderAll();
+      alert('Importado com sucesso.');
+    } catch(err) { alert('Erro ao importar: '+err.message); }
+  };
+  reader.readAsText(file);
+});
+
+// ============ UTIL ============
+function escapeHtml(s) {
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ============ INIT ============
+renderAll();
+</script>
+
+</body>
+</html>

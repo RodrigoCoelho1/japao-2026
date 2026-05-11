@@ -6,4 +6,5 @@ dev-dist
 *.pdf
 *.html
 !index.html
+!public/roteiro.html
 test*.js
