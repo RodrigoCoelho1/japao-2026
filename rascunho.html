@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Japão 2026 — Rascunho</title>
+<style>
+body { font-family: system-ui, sans-serif; max-width: 860px; margin: 0 auto; padding: 16px 12px; color: #1e293b; background: #f8fafc; }
+h1 { font-size: 1.4rem; margin-bottom: 2px; }
+.meta { color: #64748b; font-size: .82rem; margin-bottom: 20px; }
+h2 { font-size: .9rem; font-weight: 700; color: #475569; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: .05em; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+@media(max-width:580px){ .grid2 { grid-template-columns: 1fr; } }
+.box { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 12px; font-size: .78rem; }
+.box h3 { font-size: .78rem; font-weight: 700; margin: 0 0 5px; }
+.box ul { margin: 0; padding-left: 0; list-style: none; }
+.box li { margin: 2px 0; color: #374151; line-height: 1.4; }
+/* dias */
+.day { background: white; border-left: 5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; margin-bottom: 7px; }
+.day.tokyo    { border-left-color: #3b82f6; }
+.day.kyoto    { border-left-color: #dc2626; }
+.day.osaka    { border-left-color: #f97316; }
+.day.hiroshima{ border-left-color: #9333ea; }
+.day.transit  { border-left-color: #94a3b8; }
+.dh { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; margin-bottom: 3px; }
+.ddate { font-weight: 700; font-size: .9rem; }
+.dcity { color: #475569; font-size: .82rem; }
+.dhotel { color: #7c3aed; font-size: .72rem; margin-bottom: 5px; }
+.badge { font-size: .65rem; font-weight: 700; padding: 1px 7px; border-radius: 9999px; }
+.b-park    { background: #fce7f3; color: #9d174d; }
+.b-free    { background: #d1fae5; color: #065f46; }
+.b-bday    { background: #fdf4ff; color: #7e22ce; }
+.b-intense { background: #fef9c3; color: #713f12; }
+.b-usj     { background: #ffedd5; color: #9a3412; }
+ul.acts { list-style: none; padding: 0; margin: 0; }
+ul.acts li { display: flex; align-items: baseline; gap: 8px; font-size: .8rem; padding: 1px 0; line-height: 1.45; }
+.t { color: #64748b; font-family: monospace; font-size: .75rem; min-width: 46px; flex-shrink: 0; }
+.chip { font-size: .6rem; font-weight: 700; padding: 0 5px; border-radius: 9999px; flex-shrink: 0; white-space: nowrap; }
+.c-voo   { background: #1e40af; color: #fff; }
+.c-hotel { background: #7c3aed; color: #fff; }
+.c-ok    { background: #059669; color: #fff; }
+.c-park  { background: #db2777; color: #fff; }
+.foot { text-align: center; color: #94a3b8; font-size: .72rem; margin-top: 28px; }
+</style>
+</head>
+<body>
+
+<h1>🇯🇵 Japão 2026 — Rascunho do Roteiro</h1>
+<p class="meta">Família Coelho · Rodrigo, Elaine, Pedro (12a), Felipe (9a) · 27/06 → 17/07 · 21 dias</p>
+
+<h2>Status Pré-Viagem</h2>
+<div class="grid2">
+
+  <div class="box">
+    <h3>✈️ Voos — Qatar Airways + LATAM</h3>
+    <ul>
+      <li>✅ LA3528 · 27/06 · BSB→GRU · 15h00</li>
+      <li>✅ QR780 · 27/06 · GRU→DOH · 20h30 (B777)</li>
+      <li>✅ QR808 · 28/06 · DOH→NRT · pouso 29/06 12h55</li>
+      <li>✅ QR809 · 15/07 · NRT→DOH · 17h25 (B777)</li>
+      <li>✅ QR779 · 16/07 · DOH→GRU · pouso 10h35 (A350)</li>
+      <li>✅ LA3263 · 17/07 · GRU→BSB · 09h40 → 11h25</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>🏨 Hotéis — 16 noites · R$ 27.777</h3>
+    <ul>
+      <li>✅ Sunroute Plaza Shinjuku · 29/06–05/07 · 6n · R$ 9.571</li>
+      <li>✅ Good Nature Hotel Kyoto · 05/07–11/07 · 6n · R$ 10.455</li>
+      <li>✅ Mercure Osaka Namba · 11/07–14/07 · 3n · R$ 5.503</li>
+      <li>✅ Metropolitan Tokyo Marunouchi · 14/07–15/07 · 1n · R$ 2.247</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>🎢 Ingressos — confirmados</h3>
+    <ul>
+      <li>✅ Tokyo Disneyland · 01/07 · A00567974011 · ¥27.100</li>
+      <li>✅ TeamLab Planets · 02/07 08h30 · #f404769f · ¥11.800</li>
+      <li>✅ Tokyo DisneySea · 03/07 · ¥27.100</li>
+      <li>✅ Maikoya Gion · 09/07 15h · #2932897 · ¥30.800</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>⏳ Pendências</h3>
+    <ul>
+      <li>🔴 USJ + Express Pass PREMIUM · 13/07 · abre 14/05 00h JST</li>
+      <li>🔴 Gion Suetomo jantar · 09/07 19h · reservar essa semana</li>
+      <li>🔴 Massagem Hiyoshi-Do · 09/07 17h · reservar essa semana</li>
+      <li>🟡 JR Pass 21 dias · abre 28/05 16h BRT · ~R$ 11.500</li>
+      <li>🟡 Shibuya Sky · slot 17h30 · abre ~16/06</li>
+      <li>🟡 Samurai & Ninja Museum · 09/07 10h30</li>
+      <li>🟡 Visit Japan Web · a partir 13/06</li>
+      <li>🟡 Suica Digital (Apple/Google Wallet)</li>
+      <li>🟡 eSIM Airalo · 4 pessoas</li>
+      <li>🟡 Seguro viagem · 4 pax · 27/06–17/07</li>
+      <li>🟡 Hotel GRU · noite 16/07</li>
+    </ul>
+  </div>
+
+</div>
+
+<h2>Roteiro Dia a Dia</h2>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">27/06 Sáb</span><span class="dcity">Brasília → São Paulo → Doha (em voo)</span></div>
+  <ul class="acts">
+    <li><span class="t">15h00</span><span class="chip c-voo">VOO</span> LA3528 BSB → GRU</li>
+    <li><span class="t">20h30</span><span class="chip c-voo">VOO</span> QR780 GRU → DOH (Boeing 777-300ER)</li>
+  </ul>
+</article>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">28/06 Dom</span><span class="dcity">Em voo · conexão Doha</span></div>
+  <ul class="acts">
+    <li><span class="t">~10h00</span><span class="chip c-voo">VOO</span> Pouso Doha · conexão 3h35</li>
+    <li><span class="t">13h35</span><span class="chip c-voo">VOO</span> QR808 DOH → NRT (Boeing 777-300ER)</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">29/06 Seg</span><span class="dcity">Tóquio · Shinjuku — chegada</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku (check-in)</div>
+  <ul class="acts">
+    <li><span class="t">12h55</span><span class="chip c-voo">VOO</span> Pouso Narita T2</li>
+    <li><span class="t">14h00</span> Ativar JR Pass + N'EX Narita → Shinjuku (1h20)</li>
+    <li><span class="t">16h00</span><span class="chip c-hotel">HOTEL</span> Check-in Sunroute Plaza Shinjuku</li>
+    <li><span class="t">noite</span> Jantar leve Shinjuku · Walk Kabukicho / Omoide Yokocho</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">30/06 Ter</span><span class="dcity">Tóquio · Harajuku + Shibuya</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku</div>
+  <ul class="acts">
+    <li><span class="t">manhã</span> Harajuku — Takeshita-dori + Omotesando · Map Camera (trade-in câmera)</li>
+    <li><span class="t">tarde</span> Shibuya Crossing + Hachiko + Center-gai</li>
+    <li><span class="t">17h30</span> 🟡 Shibuya Sky (pôr do sol) — <em>comprar ~16/06 · ¥2.000</em></li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">01/07 Qua</span><span class="dcity">Tóquio · Tokyo Disneyland</span><span class="badge b-park">PARQUE</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku</div>
+  <ul class="acts">
+    <li><span class="t">08h30</span><span class="chip c-ok">✅ OK</span> Tokyo Disneyland — Reserva A00567974011 · ¥27.100 (2 Ad + 1 Jr + 1 Cr)</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">02/07 Qui</span><span class="dcity">Tóquio · TeamLab Planets + Odaiba</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku</div>
+  <ul class="acts">
+    <li><span class="t">08h30</span><span class="chip c-ok">✅ OK</span> TeamLab Planets — #f404769f41c50dcd56 · ¥11.800</li>
+    <li><span class="t">tarde</span> Odaiba — Unicorn Gundam DiverCity (grátis) · Miraikan ou Onsen Oedo</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">03/07 Sex</span><span class="dcity">Tóquio · Tokyo DisneySea</span><span class="badge b-park">PARQUE</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku</div>
+  <ul class="acts">
+    <li><span class="t">08h30</span><span class="chip c-ok">✅ OK</span> Tokyo DisneySea · ¥27.100 (2 Ad + 1 Jr + 1 Cr)</li>
+    <li><span class="t">noite</span> Show noturno Lagoa Mediterrânea (incluso no ingresso)</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">04/07 Sáb</span><span class="dcity">Tóquio · Dia Livre</span><span class="badge b-free">DIA LIVRE</span></div>
+  <div class="dhotel">🏨 Sunroute Plaza Shinjuku</div>
+  <ul class="acts">
+    <li><span class="t">—</span> Opções: Asakusa + Senso-ji · Akihabara · Ueno · Kamakura (day-trip) · Descanso</li>
+  </ul>
+</article>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">05/07 Dom</span><span class="dcity">Tóquio → Kyoto (Shinkansen)</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto (check-in)</div>
+  <ul class="acts">
+    <li><span class="t">10h00</span><span class="chip c-voo">TREM</span> Shinkansen Hikari Tokyo → Kyoto · 2h15 (assentos D ou E · Fuji direita)</li>
+    <li><span class="t">12h15</span><span class="chip c-hotel">HOTEL</span> Kyoto Station → Good Nature Hotel · Check-in</li>
+    <li><span class="t">tarde</span> Nishiki Market · Pontocho ou Hanamikoji à noite</li>
+  </ul>
+</article>
+
+<article class="day hiroshima">
+  <div class="dh"><span class="ddate">06/07 Seg</span><span class="dcity">Kyoto → Hiroshima + Miyajima (excursão)</span><span class="badge b-intense">DIA INTENSO</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto</div>
+  <ul class="acts">
+    <li><span class="t">07h20</span><span class="chip c-voo">TREM</span> Shinkansen Kyoto → Hiroshima (JR Pass · 1h15)</li>
+    <li><span class="t">09h00</span> A-Bomb Dome + Peace Park + Peace Memorial Museum (¥200 Ad / ¥50 Cr)</li>
+    <li><span class="t">12h30</span> Okonomimura — Hiroshima-yaki com soba (¥1.500/pax)</li>
+    <li><span class="t">14h00</span> Ferry Miyajima (JR Pass cobre) · Itsukushima Shrine · Torii flutuante (¥300)</li>
+    <li><span class="t">17h00</span><span class="chip c-voo">TREM</span> Shinkansen Hiroshima → Kyoto (JR Pass · 1h20)</li>
+  </ul>
+</article>
+
+<article class="day kyoto">
+  <div class="dh"><span class="ddate">07/07 Ter</span><span class="dcity">Kyoto → Nara (excursão)</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto</div>
+  <ul class="acts">
+    <li><span class="t">09h20</span><span class="chip c-voo">TREM</span> JR Kyoto → Nara (45 min)</li>
+    <li><span class="t">10h00</span> Nara Park — cervos + shika sembei · Tōdai-ji (Grande Buda ¥600) · Kasuga Taisha</li>
+    <li><span class="t">13h00</span> Almoço Kakinoha-sushi (sushi na folha de caqui · ¥2.000)</li>
+    <li><span class="t">14h30</span><span class="chip c-voo">TREM</span> JR Nara → Kyoto (45 min)</li>
+  </ul>
+</article>
+
+<article class="day kyoto">
+  <div class="dh"><span class="ddate">08/07 Qua</span><span class="dcity">Kyoto · Higashiyama</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto</div>
+  <ul class="acts">
+    <li><span class="t">09h00</span> Kiyomizu-dera (¥500) + Sannen-zaka + Ninen-zaka</li>
+    <li><span class="t">11h00</span> Starbucks Tatami Ninenzaka · Maruyama Park · Yasaka Shrine</li>
+    <li><span class="t">13h00</span> Almoço Gion</li>
+    <li><span class="t">15h00</span> Nishiki Market (fecha 17h30)</li>
+    <li><span class="t">19h00</span> Hanamikoji walk — gueixas a caminho do trabalho</li>
+  </ul>
+</article>
+
+<article class="day kyoto">
+  <div class="dh"><span class="ddate">09/07 Qui</span><span class="dcity">🎂 Aniversário Elaine — Kyoto</span><span class="badge b-bday">ANIVERSÁRIO 🎂</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto</div>
+  <ul class="acts">
+    <li><span class="t">06h30</span> Fushimi Inari (antes do movimento) — sessão fotos Lúcio Maeda</li>
+    <li><span class="t">09h30</span> Descanso hotel (1h)</li>
+    <li><span class="t">10h30</span> 🟡 Samurai &amp; Ninja Museum · ¥3.300 Ad / ¥2.200 Cr — <em>confirmar</em></li>
+    <li><span class="t">13h00</span> Almoço especial aniversário</li>
+    <li><span class="t">15h00</span><span class="chip c-ok">✅ OK</span> Maikoya Gion — kimono + cerimônia chá · #2932897 · ¥30.800</li>
+    <li><span class="t">17h00</span> 🔴 Massagem Hiyoshi-Do · ¥8.000/pax — <em>reservar urgente</em></li>
+    <li><span class="t">19h00</span> 🔴 Gion Suetomo — jantar kaiseki · ¥15–25k/pax — <em>reservar urgente</em></li>
+  </ul>
+</article>
+
+<article class="day kyoto">
+  <div class="dh"><span class="ddate">10/07 Sex</span><span class="dcity">Kyoto · Kinkaku-ji + Arashiyama</span></div>
+  <div class="dhotel">🏨 Good Nature Hotel Kyoto</div>
+  <ul class="acts">
+    <li><span class="t">09h00</span> Kinkaku-ji (¥500) → Ryoan-ji — jardim zen (¥600)</li>
+    <li><span class="t">11h30</span> Randen Tram Keifuku Ryoanji → Arashiyama (¥220 — fora do JR Pass)</li>
+    <li><span class="t">12h00</span> Bamboo Grove · Tenryu-ji (¥500) · Togetsukyo Bridge</li>
+    <li><span class="t">13h30</span> Almoço Arashiyama beira do rio Oi-gawa</li>
+    <li><span class="t">19h00</span> Última janta Kyoto — Pontocho ou Kawaramachi</li>
+  </ul>
+</article>
+
+<article class="day osaka">
+  <div class="dh"><span class="ddate">11/07 Sáb</span><span class="dcity">Kyoto → Osaka</span></div>
+  <div class="dhotel">🏨 Mercure Tokyu Stay Osaka Namba (check-in)</div>
+  <ul class="acts">
+    <li><span class="t">09h50</span><span class="chip c-voo">TREM</span> JR Kyoto → Osaka (JR Pass · 35 min)</li>
+    <li><span class="t">14h00</span><span class="chip c-hotel">HOTEL</span> Check-in Mercure Osaka Namba</li>
+    <li><span class="t">tarde</span> Dotonbori walk · Kukuru Takoyaki · Ichiran Ramen</li>
+  </ul>
+</article>
+
+<article class="day osaka">
+  <div class="dh"><span class="ddate">12/07 Dom</span><span class="dcity">Osaka · Dia Livre</span><span class="badge b-free">DIA LIVRE</span></div>
+  <div class="dhotel">🏨 Mercure Tokyu Stay Osaka Namba</div>
+  <ul class="acts">
+    <li><span class="t">manhã</span> Kuroman Market · Shinsaibashi · Castelo de Osaka (¥600)</li>
+    <li><span class="t">tarde</span> Shinsekai + Tsutenkaku · Daruma Kushikatsu</li>
+    <li><span class="t">noite</span> Don Quijote Dotonbori (24h)</li>
+  </ul>
+</article>
+
+<article class="day osaka">
+  <div class="dh"><span class="ddate">13/07 Seg</span><span class="dcity">Osaka · USJ — Universal Studios Japan</span><span class="badge b-usj">🔴 COMPRAR 14/05</span></div>
+  <div class="dhotel">🏨 Mercure Tokyu Stay Osaka Namba</div>
+  <ul class="acts">
+    <li><span class="t">08h00</span> 🔴 USJ + Express Pass PREMIUM — <strong>ingressos abrem 14/05 00h00 JST = 15/05 12h BRT</strong></li>
+    <li><span class="t">dia todo</span> Super Nintendo World · Harry Potter · Jurassic · Minions · Spider-Man</li>
+    <li><span class="t">noite</span> Universal CityWalk — jantar pós-parque</li>
+  </ul>
+</article>
+
+<article class="day tokyo">
+  <div class="dh"><span class="ddate">14/07 Ter</span><span class="dcity">Osaka → Tóquio · Marunouchi</span></div>
+  <div class="dhotel">🏨 Hotel Metropolitan Tokyo Marunouchi (última noite)</div>
+  <ul class="acts">
+    <li><span class="t">10h10</span><span class="chip c-voo">TREM</span> Shinkansen Shin-Osaka → Tokyo · 3h10 (assentos A ou B · Fuji esquerda)</li>
+    <li><span class="t">13h25</span><span class="chip c-hotel">HOTEL</span> Check-in Metropolitan Tokyo Marunouchi (acesso indoor Tokyo Station)</li>
+    <li><span class="t">tarde</span> Kitte Marunouchi · Imperial Palace East Gardens · Character Street B1</li>
+    <li><span class="t">19h00</span> Jantar despedida — Ginza ou Marunouchi</li>
+  </ul>
+</article>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">15/07 Qua</span><span class="dcity">Tóquio → Doha (partida)</span></div>
+  <ul class="acts">
+    <li><span class="t">11h00</span> Check-out Metropolitan Tokyo Marunouchi</li>
+    <li><span class="t">12h50</span><span class="chip c-voo">TREM</span> N'EX Tokyo Station → Narita T2 (JR Pass · 1h15)</li>
+    <li><span class="t">17h25</span><span class="chip c-voo">VOO</span> QR809 NRT → DOH (Boeing 777-300ER)</li>
+  </ul>
+</article>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">16/07 Qui</span><span class="dcity">Doha → São Paulo</span></div>
+  <ul class="acts">
+    <li><span class="t">01h55</span><span class="chip c-voo">VOO</span> QR779 DOH → GRU (Airbus A350-1000)</li>
+    <li><span class="t">10h35</span> Pouso GRU T3</li>
+    <li><span class="t">noite</span> 🟡 Hotel GRU (próximo Guarulhos) — <em>confirmar</em></li>
+  </ul>
+</article>
+
+<article class="day transit">
+  <div class="dh"><span class="ddate">17/07 Sex</span><span class="dcity">São Paulo → Brasília — chegada</span></div>
+  <ul class="acts">
+    <li><span class="t">09h40</span><span class="chip c-voo">VOO</span> LA3263 GRU → BSB · chegada 11h25</li>
+    <li><span class="t">11h25</span> 🏠 Chegada Brasília — fim da viagem</li>
+  </ul>
+</article>
+
+<p class="foot">Rascunho · Família Coelho · atualizado 2026-05-11 · para integração ao app rc-japao.vercel.app</p>
+</body>
+</html>
