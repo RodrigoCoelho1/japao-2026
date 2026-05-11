@@ -22,6 +22,7 @@ import Videos from './screens/Videos'
 import DisneySea from './screens/DisneySea'
 import Disneyland from './screens/Disneyland'
 import USJ from './screens/USJ'
+import Frases from './screens/Frases'
 
 const SCREENS = {
   home: Home,
@@ -44,6 +45,7 @@ const SCREENS = {
   disneysea: DisneySea,
   disneyland: Disneyland,
   usj: USJ,
+  frases: Frases,
 }
 
 export default function App() {

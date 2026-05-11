@@ -1,4 +1,5 @@
 import useStore from '../store/useStore'
+import MapsLink from '../components/MapsLink'
 
 const ZONES = [
   {
@@ -78,10 +79,11 @@ export default function USJ({ goBack }) {
       <div className="screen-header">
         <div className="flex items-center gap-2">
           <button onClick={goBack} className={`text-xl ${sub}`}>‹</button>
-          <div>
+          <div className="flex-1 min-w-0">
             <h1 className={`text-lg font-bold ${text}`}>🎢 Universal Studios Japan</h1>
             <p className={`text-xs ${sub}`}>Osaka · 12/07 · Nintendo World · Harry Potter · Flying Dinosaur</p>
           </div>
+          <MapsLink name="Universal Studios Japan" lat={34.6654} lng={135.4323} address="Osaka, Japan" />
         </div>
       </div>
 

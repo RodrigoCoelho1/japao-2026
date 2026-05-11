@@ -273,6 +273,7 @@ const URGENCY_CONFIG = {
   urgente: { bg: 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800', dot: 'bg-red-500', label: '🔴 URGENTE', text: 'text-red-700 dark:text-red-300' },
   breve: { bg: 'bg-amber-50 dark:bg-amber-950 border-amber-200 dark:border-amber-800', dot: 'bg-amber-500', label: '🟡 Antes da viagem', text: 'text-amber-700 dark:text-amber-300' },
   embarque: { bg: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800', dot: 'bg-blue-500', label: '🔵 Antes de embarcar', text: 'text-blue-700 dark:text-blue-300' },
+  backlog: { bg: 'bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800', dot: 'bg-purple-500', label: '💡 Backlog (analisar depois)', text: 'text-purple-700 dark:text-purple-300' },
 }
 
 function AlertsPanel({ navigate }) {
@@ -282,11 +283,13 @@ function AlertsPanel({ navigate }) {
   const urgentes = pendentes.filter(r => r.urgency === 'urgente')
   const breves = pendentes.filter(r => r.urgency === 'breve')
   const embarque = pendentes.filter(r => r.urgency === 'embarque')
+  const backlog = pendentes.filter(r => r.urgency === 'backlog')
 
   const groups = [
     { key: 'urgente', items: urgentes },
     { key: 'breve', items: breves },
     { key: 'embarque', items: embarque },
+    { key: 'backlog', items: backlog },
   ].filter(g => g.items.length > 0)
 
   return (

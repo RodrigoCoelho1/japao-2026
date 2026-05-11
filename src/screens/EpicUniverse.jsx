@@ -1,4 +1,5 @@
 import useStore from '../store/useStore'
+import MapsLink from '../components/MapsLink'
 
 const WORLDS = [
   {
@@ -82,10 +83,11 @@ export default function EpicUniverse({ goBack }) {
       <div className="screen-header">
         <div className="flex items-center gap-2">
           <button onClick={goBack} className={`text-xl ${darkMode ? 'text-slate-400' : 'text-gray-400'}`}>‹</button>
-          <div>
+          <div className="flex-1 min-w-0">
             <h1 className={`text-lg font-bold ${text}`}>🎢 Epic Universe</h1>
             <p className={`text-xs ${sub}`}>Universal Orlando, Florida · Aberto em maio 2025</p>
           </div>
+          <MapsLink name="Universal Epic Universe" lat={28.4747} lng={-81.4625} address="Orlando, Florida, USA" />
         </div>
       </div>
 

@@ -14,6 +14,7 @@ const ALL_TABS = [
   { id: 'informacoes', label: 'Informações',  emoji: '🌐', group: 'guias' },
   { id: 'checklist',   label: 'Checklist',    emoji: '✅', group: 'guias' },
   { id: 'videos',      label: 'Vídeos',       emoji: '🎬', group: 'guias' },
+  { id: 'frases',      label: 'Frases JP',    emoji: '🗣️', group: 'guias' },
   { id: 'disneyland',  label: 'Disneyland',   emoji: '🏰', group: 'parques' },
   { id: 'disneysea',   label: 'DisneySea',    emoji: '🌊', group: 'parques' },
   { id: 'usj',         label: 'USJ',           emoji: '🎢', group: 'parques' },
