@@ -4,7 +4,6 @@ dev-dist
 *.bat
 *.md
 *.pdf
-*.html
+/*.html
 !index.html
-!public/roteiro.html
 test*.js
